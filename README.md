@@ -71,8 +71,8 @@ This project uses a **Client-Side Architecture**, so no complex backend setup is
 
 1.  **Clone the repository**
     ```bash
-    git clone [https://github.com/your-username/jal-nivaran.git](https://github.com/your-username/jal-nivaran.git)
-    cd jal-nivaran
+    git clone https://github.com/shivam290204/smart_floodwatch.git
+    cd ******
     ```
 
 2.  **Install Dependencies**
