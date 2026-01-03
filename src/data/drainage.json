@@ -1,0 +1,5 @@
+[
+  { "id": "D1", "name": "Najafgarh Drain", "status": "Normal" },
+  { "id": "D2", "name": "Trunk Drain 1", "status": "Warning" },
+  { "id": "D3", "name": "Barapullah Drain", "status": "Critical" }
+]

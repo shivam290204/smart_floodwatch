@@ -1,0 +1,6 @@
+[
+  { "id": 1, "name": "Yamuna Pushta", "riskScore": 82, "trend": "rising" },
+  { "id": 2, "name": "Lutyens Zone", "riskScore": 68, "trend": "falling" },
+  { "id": 3, "name": "Karol Bagh", "riskScore": 74, "trend": "rising" },
+  { "id": 4, "name": "Mehrauli", "riskScore": 59, "trend": "falling" }
+]
