@@ -88,7 +88,7 @@ This project uses a **Client-Side Architecture**, so no complex backend setup is
     ```
 
 4.  **Open in Browser**
-    Visit `http://localhost:5173` (or `localhost:3000`) to view the dashboard.
+    Visit `https://smart-floodwatch-git-main-shivam-1494s-projects.vercel.app?_vercel_share=4rqssxTL1r3BvaF6aSAi8DlPrEnTztVE`  to view the dashboard.
 
 ---
 
