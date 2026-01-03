@@ -1,10 +1,8 @@
 /**
  * News Service for Smart FloodWatch
- * Fetches flood-related news from NewsAPI
+ * Fetches flood-related news via backend API
  */
 
-const NEWS_API_KEY = process.env.REACT_APP_NEWS_API_KEY || 'a397d3c0dfe14e58bc08d4c1c3eed6d2';
-const NEWS_API_BASE = 'https://newsapi.org/v2';
 const CACHE_DURATION = 10 * 60 * 1000; // 10 minutes
 
 class NewsService {
@@ -30,15 +28,7 @@ class NewsService {
     }
 
     try {
-      let newsData = [];
-      
-      if (NEWS_API_KEY) {
-        newsData = await this.fetchFromNewsAPI();
-      } else {
-        console.warn('NewsAPI key not found. Using fallback data.');
-        newsData = this.getMockNewsData();
-      }
-
+      const newsData = await this.fetchFromAPI();
       const processedNews = this.processNewsData(newsData);
       
       this.cache = {
@@ -54,43 +44,21 @@ class NewsService {
     }
   }
 
-  async fetchFromNewsAPI() {
-    const queries = [
-      'delhi flood OR delhi waterlogging OR delhi rainfall',
-      'india monsoon alert OR imd warning',
-      'yamuna water level'
-    ];
-    
-    const allArticles = [];
-    
-    for (const query of queries) {
-      try {
-        const response = await fetch(
-          `${NEWS_API_BASE}/everything?` +
-          `q=${encodeURIComponent(query)}` +
-          `&language=en` +
-          `&sortBy=publishedAt` +
-          `&pageSize=10` +
-          `&apiKey=${NEWS_API_KEY}`
-        );
-
-        if (response.ok) {
-          const data = await response.json();
-          if (data.articles) {
-            allArticles.push(...data.articles);
-          }
-        }
-      } catch (err) {
-        console.error('Error fetching from NewsAPI:', err);
+  async fetchFromAPI() {
+    try {
+      const response = await fetch('/api/news');
+      
+      if (!response.ok) {
+        throw new Error(`API returned ${response.status}`);
       }
+      
+      const data = await response.json();
+      return data.articles || [];
+      
+    } catch (err) {
+      console.error('Error fetching from API:', err);
+      return this.getMockNewsData();
     }
-    
-    // Remove duplicates based on title
-    const uniqueArticles = Array.from(
-      new Map(allArticles.map(item => [item.title, item])).values()
-    );
-    
-    return uniqueArticles.slice(0, 20);
   }
 
   processNewsData(articles) {
