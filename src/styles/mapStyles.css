@@ -1,3 +1,22 @@
+/* Disable text selection in Leaflet popups to prevent typing cursor */
+.leaflet-popup-content-wrapper,
+.leaflet-popup-content {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  cursor: default;
+}
+
+/* Disable text selection on headers and titles */
+h1, h2, h3, h4, h5, h6,
+.select-none {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
 .mock-map {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));

@@ -11,9 +11,10 @@ const TimeToFlood = ({ ward }) => {
   let timeToFlood = 0;
   let status = 'safe';
   let message = 'No immediate risk';
-  let bgColor = 'bg-green-50';
-  let borderColor = 'border-green-300';
-  let textColor = 'text-green-800';
+  let bgColor = 'bg-white';
+  let borderColor = 'border-gray-300';
+  let borderLeftClass = 'border-l-gray-400';
+  let textColor = 'text-gray-800';
 
   if (rainfallIntensity > 0 && remainingBuffer > 0) {
     timeToFlood = remainingBuffer / rainfallIntensity;
@@ -21,34 +22,39 @@ const TimeToFlood = ({ ward }) => {
     if (timeToFlood < 2) {
       status = 'critical';
       message = 'Immediate action required!';
-      bgColor = 'bg-red-50';
-      borderColor = 'border-red-300';
-      textColor = 'text-red-800';
+      bgColor = 'bg-white';
+      borderColor = 'border-gray-300';
+      borderLeftClass = 'border-l-blue-900';
+      textColor = 'text-gray-900';
     } else if (timeToFlood < 6) {
       status = 'warning';
       message = 'Monitor closely';
-      bgColor = 'bg-orange-50';
-      borderColor = 'border-orange-300';
-      textColor = 'text-orange-800';
+      bgColor = 'bg-white';
+      borderColor = 'border-gray-300';
+      borderLeftClass = 'border-l-blue-800';
+      textColor = 'text-gray-900';
     } else if (timeToFlood < 12) {
       status = 'caution';
       message = 'Prepare response teams';
-      bgColor = 'bg-yellow-50';
-      borderColor = 'border-yellow-300';
-      textColor = 'text-yellow-800';
+      bgColor = 'bg-white';
+      borderColor = 'border-gray-300';
+      borderLeftClass = 'border-l-blue-700';
+      textColor = 'text-gray-900';
     } else {
       status = 'low';
       message = 'Low urgency';
-      bgColor = 'bg-blue-50';
-      borderColor = 'border-blue-300';
-      textColor = 'text-blue-800';
+      bgColor = 'bg-white';
+      borderColor = 'border-gray-300';
+      borderLeftClass = 'border-l-gray-500';
+      textColor = 'text-gray-800';
     }
   } else if (remainingBuffer <= 0) {
     status = 'flooded';
     message = 'Capacity exceeded';
-    bgColor = 'bg-red-50';
-    borderColor = 'border-red-300';
-    textColor = 'text-red-800';
+    bgColor = 'bg-white';
+    borderColor = 'border-gray-300';
+    borderLeftClass = 'border-l-blue-900';
+    textColor = 'text-gray-900';
   }
 
   const getStatusIcon = () => {
@@ -63,10 +69,9 @@ const TimeToFlood = ({ ward }) => {
   };
 
   return (
-    <div className={`${bgColor} ${borderColor} border-2 rounded-lg p-4 mt-3`}>
+    <div className={`${bgColor} ${borderColor} ${borderLeftClass} border-4 border-l-4 rounded-md p-4 mt-3`}>
       <div className="flex items-center gap-2 mb-2">
-        <span className="text-2xl">{getStatusIcon()}</span>
-        <h4 className="font-bold text-sm uppercase tracking-wide text-gray-800">
+        <h4 className="font-bold text-sm uppercase tracking-wide text-gray-900">
           Time-to-Flood Estimate
         </h4>
       </div>

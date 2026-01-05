@@ -7,10 +7,9 @@ import AlertSystem from './components/AlertSystem';
 import DecisionTrace from './components/DecisionTrace';
 import RainfallTrendAnalysis from './components/RainfallTrendAnalysis';
 import HistoricalComparison from './components/HistoricalComparison';
-import Header from './components/Header';
+import OfficialHeader from './components/OfficialHeader';
 import HeroSection from './components/HeroSection';
 import LiveAlertBanner from './components/LiveAlertBanner';
-import ReportWaterlogging from './components/ReportWaterlogging';
 import EmergencyResources from './components/EmergencyResources';
 import EmergencyOperationsDashboard from './components/EmergencyOperationsDashboard';
 import HotspotsInsights from './components/HotspotsInsightsRedesigned';
@@ -61,7 +60,17 @@ function App() {
   );
 }
 
-function AppContent({ alerts, setAlerts, lastUpdate, selectedWard, setSelectedWard, currentView, setCurrentView, activeReports, handleReportSubmit }) {
+function AppContent({ 
+  alerts, 
+  setAlerts, 
+  lastUpdate, 
+  selectedWard, 
+  setSelectedWard, 
+  currentView, 
+  setCurrentView, 
+  activeReports, 
+  handleReportSubmit
+}) {
   const { selectedMonth } = useDataContext();
 
   const Navigation = () => (
@@ -151,7 +160,7 @@ function AppContent({ alerts, setAlerts, lastUpdate, selectedWard, setSelectedWa
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header lastUpdate={lastUpdate} />
+      <OfficialHeader lastUpdate={lastUpdate} />
       {currentView === 'dashboard' && (
         <HeroSection 
           onReportSubmit={handleReportSubmit}
