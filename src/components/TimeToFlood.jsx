@@ -79,14 +79,14 @@ const TimeToFlood = ({ ward }) => {
       {rainfallIntensity > 0 && remainingBuffer > 0 ? (
         <div>
           <div className="flex items-baseline gap-2">
-            <span className={`text-3xl font-bold ${textColor}`}>
+            <span className={`text-2xl sm:text-3xl font-bold ${textColor}`}>
               {timeToFlood.toFixed(1)}
             </span>
-            <span className="text-lg font-semibold text-gray-700">hours</span>
+            <span className="text-base sm:text-lg font-semibold text-gray-700">hours</span>
           </div>
-          <p className={`text-xs mt-2 font-semibold ${textColor}`}>{message}</p>
+          <p className={`text-xs sm:text-sm mt-2 font-semibold ${textColor}`}>{message}</p>
           
-          <div className="mt-3 pt-3 border-t border-gray-300 space-y-1 text-xs text-gray-600">
+          <div className="mt-3 pt-3 border-t border-gray-300 space-y-1 text-xs sm:text-sm text-gray-600">
             <div className="flex justify-between">
               <span>Remaining Buffer:</span>
               <span className="font-semibold">{remainingBuffer.toFixed(1)} mm</span>
@@ -99,15 +99,15 @@ const TimeToFlood = ({ ward }) => {
         </div>
       ) : remainingBuffer <= 0 ? (
         <div>
-          <p className={`text-lg font-bold ${textColor}`}>⚠️ {message}</p>
-          <p className="text-xs mt-2 text-gray-600">
+          <p className={`text-base sm:text-lg font-bold ${textColor}`}>⚠️ {message}</p>
+          <p className="text-xs sm:text-sm mt-2 text-gray-600">
             Drainage capacity fully utilized. Immediate pumping required.
           </p>
         </div>
       ) : (
         <div>
-          <p className={`text-lg font-semibold ${textColor}`}>✅ {message}</p>
-          <p className="text-xs mt-2 text-gray-600">
+          <p className={`text-base sm:text-lg font-semibold ${textColor}`}>✅ {message}</p>
+          <p className="text-xs sm:text-sm mt-2 text-gray-600">
             Current rainfall intensity is minimal. Continue monitoring.
           </p>
         </div>
@@ -115,7 +115,7 @@ const TimeToFlood = ({ ward }) => {
 
       {timeToFlood > 0 && timeToFlood < 6 && (
         <div className="mt-3 bg-white rounded p-2 border border-orange-200">
-          <p className="text-xs font-semibold text-orange-800">
+          <p className="text-xs sm:text-sm font-semibold text-orange-800">
             ⚡ Quick Action: Deploy pumps and clear priority drains now
           </p>
         </div>

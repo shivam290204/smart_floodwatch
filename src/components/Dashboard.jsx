@@ -219,12 +219,12 @@ const Dashboard = () => {
         </>
       )}
       
-      <div className="bg-white rounded-md border border-gray-200 p-6">
-        <div className="flex items-center justify-between mb-6">
+      <div className="bg-white rounded-md border border-gray-200 p-4 sm:p-6">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
           <div>
-            <h2 className="text-2xl font-bold text-gray-900">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">
               Monsoon Flood Risk Assessment Dashboard
-              <span className="text-sm font-normal text-gray-700 block mt-1">
+              <span className="text-xs sm:text-sm font-normal text-gray-700 block mt-1">
                 Real-time decision support for Delhi Municipal Corporation
               </span>
             </h2>
@@ -232,7 +232,7 @@ const Dashboard = () => {
           <DownloadReportBtn />
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4 mb-8">
           <RiskCard 
             title="Risk Level" 
             value={currentScenario.risk}
@@ -265,10 +265,10 @@ const Dashboard = () => {
           />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-8">
           <div className="bg-gray-50 p-4 rounded-md border border-gray-200">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Top 5 Vulnerable Wards</h3>
-            <div className="h-64">
+            <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-4">Top 5 Vulnerable Wards</h3>
+            <div className="h-48 sm:h-56 md:h-64">
               <Bar 
                 data={barChartData}
                 options={{
@@ -283,8 +283,8 @@ const Dashboard = () => {
           </div>
 
           <div className="bg-gray-50 p-4 rounded-md border border-gray-200">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">24-Hour Trends</h3>
-            <div className="h-64">
+            <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-4">24-Hour Trends</h3>
+            <div className="h-48 sm:h-56 md:h-64">
               <Line 
                 data={lineChartData}
                 options={{
@@ -299,9 +299,9 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="bg-gray-50 rounded-md border border-gray-200 p-4">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Priority Action Required</h3>
-          <div className="overflow-x-auto">
+        <div className="bg-gray-50 rounded-md border border-gray-200 p-3 sm:p-4">
+          <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-4">Priority Action Required</h3>
+          <div className="overflow-x-auto text-xs sm:text-sm">
             <table className="min-w-full divide-y divide-gray-200">
               <thead>
                 <tr className="bg-gray-100 border-b border-gray-200">

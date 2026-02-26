@@ -31,17 +31,17 @@ const RiskCard = ({ title, value, change, color = 'blue', icon, riskLevel, rainf
   const rainfallColorClass = rainfallAmount !== undefined ? getRainfallColor(rainfallAmount) : '';
   
   return (
-    <div className={`rounded-md p-3 ${colorMap[color]} transition-all`}>
-      <div className="flex items-start gap-2 mb-2">
-        <span className="text-lg flex-shrink-0">{icon}</span>
-        <div className="text-xs font-bold uppercase tracking-tight text-gray-600 line-clamp-2">{title}</div>
+    <div className={`rounded-md p-2 sm:p-3 md:p-4 ${colorMap[color]} transition-all`}>
+      <div className="flex items-start gap-1 sm:gap-2 mb-2">
+        <span className="text-base sm:text-lg flex-shrink-0">{icon}</span>
+        <div className="text-xs sm:text-sm font-bold uppercase tracking-tight text-gray-600 line-clamp-2">{title}</div>
       </div>
-      <div className={`text-xl font-extrabold mb-1 line-clamp-1 ${
+      <div className={`text-lg sm:text-xl md:text-2xl font-extrabold mb-1 line-clamp-1 ${
         textColorClass || rainfallColorClass || 'text-gray-900'
       }`}>
         {value}
       </div>
-      <div className="text-xs text-gray-600 line-clamp-1">{change}</div>
+      <div className="text-xs sm:text-sm text-gray-600 line-clamp-1">{change}</div>
       
       {riskLevel && (
         <div className="mt-2 pt-1 border-t border-gray-200">

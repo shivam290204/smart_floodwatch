@@ -89,7 +89,7 @@ const FloodMap = ({ onWardSelect }) => {
 
   return (
     <div className="relative">
-      <MapContainer center={center} zoom={zoom} className="h-[500px] w-full rounded-xl shadow-lg">
+      <MapContainer center={center} zoom={zoom} className="h-96 sm:h-[500px] md:h-[600px] lg:h-[700px] w-full rounded-xl shadow-lg">
         <LayersControl position="topright">
           <BaseLayer checked name="OpenStreetMap">
             <TileLayer

@@ -131,28 +131,28 @@ const HotspotsInsightsRedesigned = ({ onNavigateToEmergency }) => {
   }
 
   return (
-    <div className="space-y-6 max-w-7xl mx-auto p-4">
+    <div className="space-y-6 max-w-7xl mx-auto p-3 sm:p-4 md:p-6">
       {/* TOP FLOOD-PRONE WARDS - RISK LEADERBOARD */}
       <div className="bg-white rounded-lg shadow-md border border-gray-200">
-        <div className="bg-gray-50 px-6 py-4 border-b border-gray-200 select-none">
-          <div className="flex items-center justify-between">
+        <div className="bg-gray-50 px-4 sm:px-6 py-4 border-b border-gray-200 select-none">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 flex items-center gap-2 select-none">
-                <svg className="w-7 h-7 text-blue-900" fill="currentColor" viewBox="0 0 20 20">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 flex items-center gap-2 select-none">
+                <svg className="w-6 sm:w-7 h-6 sm:h-7 text-blue-900" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
                 </svg>
                 Risk Leaderboard
               </h2>
-              <p className="text-sm text-gray-600 mt-1 select-none">Top 5 High-Risk Wards - Real-time Monitoring</p>
+              <p className="text-xs sm:text-sm text-gray-600 mt-1 select-none">Top 5 High-Risk Wards - Real-time Monitoring</p>
             </div>
-            <div className="bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-200 select-none">
+            <div className="bg-white px-4 py-2 rounded-lg shadow-sm border border-gray-200 select-none whitespace-nowrap">
               <div className="text-xs text-gray-500 select-none">Last Updated</div>
               <div className="text-sm font-bold text-gray-900 select-none">{new Date().toLocaleTimeString()}</div>
             </div>
           </div>
         </div>
 
-        <div className="p-6 space-y-4">
+        <div className="p-3 sm:p-4 md:p-6 space-y-3 sm:space-y-4">
           {topWards.map((ward) => (
             <div
               key={ward.rank}
@@ -164,12 +164,12 @@ const HotspotsInsightsRedesigned = ({ onNavigateToEmergency }) => {
                   : 'border-gray-300 bg-white'
               }`}
             >
-              <div className="p-5">
-                <div className="flex items-start justify-between mb-4">
-                  <div className="flex items-center gap-4">
+              <div className="p-4 sm:p-5">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 sm:gap-4 mb-4">
+                  <div className="flex items-center gap-3 sm:gap-4">
                     {/* Rank Badge */}
                     <div
-                      className={`w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold text-white ${
+                      className={`w-10 sm:w-12 h-10 sm:h-12 rounded-full flex items-center justify-center text-lg sm:text-xl font-bold text-white flex-shrink-0 ${
                         ward.rank === 1
                           ? 'bg-blue-900'
                           : ward.rank === 2
@@ -183,9 +183,9 @@ const HotspotsInsightsRedesigned = ({ onNavigateToEmergency }) => {
                     </div>
 
                     {/* Ward Info */}
-                    <div>
-                      <h3 className="text-lg font-bold text-gray-900 select-none">{ward.name}</h3>
-                      <div className="flex items-center gap-2 mt-1">
+                    <div className="flex-1">
+                      <h3 className="text-base sm:text-lg font-bold text-gray-900 select-none">{ward.name}</h3>
+                      <div className="flex items-center gap-2 mt-1 text-xs sm:text-sm">
                         <span
                           className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold select-none ${
                             ward.riskCategory === 'Critical'
