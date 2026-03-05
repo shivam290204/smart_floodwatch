@@ -31,12 +31,10 @@ const DownloadReportBtn = ({ className = '' }) => {
       onClick={handleDownload}
       disabled={isGenerating}
       className={`
-        flex items-center gap-2 px-4 py-2.5 
+        flex items-center gap-2 px-4 py-2 
         bg-gray-800 hover:bg-gray-900 
-        text-white font-semibold 
-        rounded-md transition-all duration-200
-        shadow-md hover:shadow-lg
-        active:scale-95
+        text-white font-bold uppercase tracking-wide text-sm
+        border border-gray-950 transition-all duration-200
         disabled:opacity-50 disabled:cursor-not-allowed
         ${className}
       `}

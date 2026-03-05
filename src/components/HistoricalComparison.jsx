@@ -68,7 +68,7 @@ const HistoricalComparison = () => {
   };
 
   if (loading || !historicalData) {
-    return <div className="bg-white rounded-lg shadow-md p-4">Loading historical data...</div>;
+    return <div className="bg-white border border-gray-300 shadow-sm p-4 font-bold uppercase text-gray-700">Loading historical data...</div>;
   }
 
   const chartData = {
@@ -129,68 +129,69 @@ const HistoricalComparison = () => {
   const combinedChange = ((currentCombined - historicalData.avgCombined) / historicalData.avgCombined) * 100;
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 space-y-4">
-      <div>
-        <h3 className="font-bold text-lg text-gray-800 flex items-center gap-2">
-          <span>📅</span> Historical Rainfall Comparison
+    <div className="bg-white border border-gray-300 shadow-sm">
+      <div className="bg-blue-900 text-white px-4 py-3 border-b border-gray-300">
+        <h3 className="font-bold text-lg uppercase tracking-wide">
+          Historical Rainfall Comparison
         </h3>
-        <p className="text-xs text-gray-600">5-Year Monsoon Trend Analysis</p>
+        <p className="text-xs text-blue-200 uppercase">5-Year Monsoon Trend Analysis</p>
       </div>
 
-      <div className="h-64">
-        <Bar data={chartData} options={chartOptions} />
-      </div>
+      <div className="p-4 space-y-4">
+        <div className="h-64 border border-gray-200 p-2 bg-gray-50">
+          <Bar data={chartData} options={chartOptions} />
+        </div>
 
-      <div className="grid grid-cols-3 gap-3">
-        <div className={`rounded-lg p-3 border-2 ${
-          northChange > 0 ? 'bg-red-50 border-red-300' : 'bg-blue-50 border-blue-300'
-        }`}>
-          <div className="text-xs text-gray-600 mb-1">North Delhi {currentYear}</div>
-          <div className={`text-2xl font-bold ${northChange > 0 ? 'text-red-700' : 'text-blue-700'}`}>
-            {currentNorth.toFixed(0)} mm
+        <div className="grid grid-cols-3 gap-4">
+          <div className={`bg-white border border-gray-300 p-3 border-t-4 ${
+            northChange > 0 ? 'border-t-red-700' : 'border-t-blue-700'
+          }`}>
+            <div className="text-xs text-gray-700 mb-1 font-bold uppercase">North Delhi {currentYear}</div>
+            <div className={`text-2xl font-bold ${northChange > 0 ? 'text-red-800' : 'text-blue-800'}`}>
+              {currentNorth.toFixed(0)} mm
+            </div>
+            <div className="text-xs font-bold mt-1 uppercase">
+              {northChange > 0 ? '↑' : '↓'} {Math.abs(northChange).toFixed(1)}% vs 5-yr avg
+            </div>
           </div>
-          <div className="text-xs font-semibold mt-1">
-            {northChange > 0 ? '↑' : '↓'} {Math.abs(northChange).toFixed(1)}% vs 5-yr avg
+
+          <div className={`bg-white border border-gray-300 p-3 border-t-4 ${
+            southChange > 0 ? 'border-t-red-700' : 'border-t-blue-700'
+          }`}>
+            <div className="text-xs text-gray-700 mb-1 font-bold uppercase">South Delhi {currentYear}</div>
+            <div className={`text-2xl font-bold ${southChange > 0 ? 'text-red-800' : 'text-blue-800'}`}>
+              {currentSouth.toFixed(0)} mm
+            </div>
+            <div className="text-xs font-bold mt-1 uppercase">
+              {southChange > 0 ? '↑' : '↓'} {Math.abs(southChange).toFixed(1)}% vs 5-yr avg
+            </div>
+          </div>
+
+          <div className={`bg-white border border-gray-300 p-3 border-t-4 ${
+            combinedChange > 0 ? 'border-t-red-700' : 'border-t-purple-700'
+          }`}>
+            <div className="text-xs text-gray-700 mb-1 font-bold uppercase">Total Delhi {currentYear}</div>
+            <div className={`text-2xl font-bold ${combinedChange > 0 ? 'text-red-800' : 'text-purple-800'}`}>
+              {currentCombined.toFixed(0)} mm
+            </div>
+            <div className="text-xs font-bold mt-1 uppercase">
+              {combinedChange > 0 ? '↑' : '↓'} {Math.abs(combinedChange).toFixed(1)}% vs 5-yr avg
+            </div>
           </div>
         </div>
 
-        <div className={`rounded-lg p-3 border-2 ${
-          southChange > 0 ? 'bg-red-50 border-red-300' : 'bg-blue-50 border-blue-300'
-        }`}>
-          <div className="text-xs text-gray-600 mb-1">South Delhi {currentYear}</div>
-          <div className={`text-2xl font-bold ${southChange > 0 ? 'text-red-700' : 'text-blue-700'}`}>
-            {currentSouth.toFixed(0)} mm
-          </div>
-          <div className="text-xs font-semibold mt-1">
-            {southChange > 0 ? '↑' : '↓'} {Math.abs(southChange).toFixed(1)}% vs 5-yr avg
-          </div>
-        </div>
-
-        <div className={`rounded-lg p-3 border-2 ${
-          combinedChange > 0 ? 'bg-red-50 border-red-300' : 'bg-purple-50 border-purple-300'
-        }`}>
-          <div className="text-xs text-gray-600 mb-1">Total Delhi {currentYear}</div>
-          <div className={`text-2xl font-bold ${combinedChange > 0 ? 'text-red-700' : 'text-purple-700'}`}>
-            {currentCombined.toFixed(0)} mm
-          </div>
-          <div className="text-xs font-semibold mt-1">
-            {combinedChange > 0 ? '↑' : '↓'} {Math.abs(combinedChange).toFixed(1)}% vs 5-yr avg
-          </div>
-        </div>
-      </div>
-
-      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-3 border border-indigo-200">
-        <div className="flex items-start gap-2">
-          <span className="text-xl">🔍</span>
-          <div className="flex-1">
-            <h4 className="font-bold text-sm text-gray-800 mb-1">Trend Analysis</h4>
-            <p className="text-xs text-gray-700">
-              {northChange > 10 || southChange > 10 
-                ? `⚠️ Above-average monsoon detected. Historical data shows increased flood risk in years with >10% excess rainfall.`
-                : northChange < -10 || southChange < -10
-                ? `✅ Below-average rainfall. Lower flood risk expected, but maintain monitoring for localized heavy showers.`
-                : `📊 Normal monsoon pattern. Standard flood preparedness protocols recommended.`}
-            </p>
+        <div className="bg-blue-50 border border-blue-300 p-3">
+          <div className="flex items-start gap-2">
+            <div className="flex-1">
+              <h4 className="font-bold text-sm text-blue-900 mb-1 uppercase">Trend Analysis</h4>
+              <p className="text-xs text-blue-800 font-semibold uppercase">
+                {northChange > 10 || southChange > 10 
+                  ? `ABOVE-AVERAGE MONSOON DETECTED. HISTORICAL DATA SHOWS INCREASED FLOOD RISK IN YEARS WITH >10% EXCESS RAINFALL.`
+                  : northChange < -10 || southChange < -10
+                  ? `BELOW-AVERAGE RAINFALL. LOWER FLOOD RISK EXPECTED, BUT MAINTAIN MONITORING FOR LOCALIZED HEAVY SHOWERS.`
+                  : `NORMAL MONSOON PATTERN. STANDARD FLOOD PREPAREDNESS PROTOCOLS RECOMMENDED.`}
+              </p>
+            </div>
           </div>
         </div>
       </div>

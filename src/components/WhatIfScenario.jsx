@@ -37,86 +37,86 @@ const WhatIfScenario = ({ baseRainfall, drainageDeficit, complaints, onScenarioC
   const { adjustedRainfall, riskIndex, riskCategory } = getCurrentScenarioData();
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 border border-gray-200">
-      <div className="flex items-center gap-2 mb-3">
-        <span className="text-xl">🔮</span>
-        <h3 className="font-bold text-sm uppercase tracking-wide text-gray-800">
+    <div className="bg-white border border-gray-300 shadow-sm">
+      <div className="bg-blue-900 text-white px-3 py-2 border-b border-gray-300">
+        <h3 className="font-bold text-sm uppercase tracking-wide">
           What-If Rainfall Scenarios
         </h3>
       </div>
 
-      <p className="text-xs text-gray-600 mb-3">
-        Simulate different rainfall conditions and see impact on flood risk
-      </p>
+      <div className="p-4">
+        <p className="text-xs text-gray-700 mb-3 uppercase font-semibold">
+          Simulate different rainfall conditions and see impact on flood risk
+        </p>
 
-      <div className="grid grid-cols-4 gap-2 mb-4">
-        {scenarios.map((scenario) => (
-          <button
-            key={scenario.value}
-            onClick={() => handleScenarioClick(scenario.value)}
-            className={`p-3 rounded-lg border-2 transition-all ${
-              selectedScenario === scenario.value
-                ? scenario.color + ' shadow-md transform scale-105'
-                : 'bg-gray-50 border-gray-200 text-gray-600 hover:border-gray-300'
-            }`}
-          >
-            <div className="text-2xl mb-1">{scenario.icon}</div>
-            <div className="text-xs font-bold">{scenario.label}</div>
-          </button>
-        ))}
-      </div>
-
-      {/* Scenario Results */}
-      <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-lg p-3 space-y-2">
-        <div className="flex justify-between items-center text-sm">
-          <span className="text-gray-700">Scenario Rainfall:</span>
-          <span className="font-bold text-gray-900">
-            {adjustedRainfall.toFixed(1)} mm
-            {selectedScenario > 0 && (
-              <span className="text-xs text-red-600 ml-1">
-                (+{(adjustedRainfall - baseRainfall).toFixed(1)})
-              </span>
-            )}
-          </span>
+        <div className="grid grid-cols-4 gap-2 mb-4">
+          {scenarios.map((scenario) => (
+            <button
+              key={scenario.value}
+              onClick={() => handleScenarioClick(scenario.value)}
+              className={`p-2 border transition-all ${
+                selectedScenario === scenario.value
+                  ? scenario.color + ' border-2'
+                  : 'bg-gray-50 border-gray-300 text-gray-700 hover:bg-gray-100'
+              }`}
+            >
+              <div className="text-xs font-bold uppercase">{scenario.label}</div>
+            </button>
+          ))}
         </div>
 
-        <div className="flex justify-between items-center text-sm">
-          <span className="text-gray-700">Projected Risk Score:</span>
-          <span className={`font-bold text-lg ${
-            riskIndex > 70 ? 'text-red-600' : riskIndex > 40 ? 'text-yellow-600' : 'text-green-600'
-          }`}>
-            {Math.round(riskIndex)}/100
-          </span>
-        </div>
+        {/* Scenario Results */}
+        <div className="bg-gray-50 border border-gray-300 p-3 space-y-2">
+          <div className="flex justify-between items-center text-sm">
+            <span className="text-gray-800 font-semibold uppercase">Scenario Rainfall:</span>
+            <span className="font-bold text-gray-900">
+              {adjustedRainfall.toFixed(1)} mm
+              {selectedScenario > 0 && (
+                <span className="text-xs text-red-700 ml-1">
+                  (+{(adjustedRainfall - baseRainfall).toFixed(1)})
+                </span>
+              )}
+            </span>
+          </div>
 
-        <div className="flex justify-between items-center text-sm">
-          <span className="text-gray-700">Risk Category:</span>
-          <span className={`px-2 py-1 rounded font-semibold text-xs ${
-            riskCategory === 'High' ? 'bg-red-100 text-red-700' :
-            riskCategory === 'Medium' ? 'bg-yellow-100 text-yellow-700' :
-            'bg-green-100 text-green-700'
-          }`}>
-            {riskCategory}
-          </span>
+          <div className="flex justify-between items-center text-sm">
+            <span className="text-gray-800 font-semibold uppercase">Projected Risk Score:</span>
+            <span className={`font-bold text-lg ${
+              riskIndex > 70 ? 'text-red-700' : riskIndex > 40 ? 'text-yellow-700' : 'text-green-700'
+            }`}>
+              {Math.round(riskIndex)}/100
+            </span>
+          </div>
+
+          <div className="flex justify-between items-center text-sm">
+            <span className="text-gray-800 font-semibold uppercase">Risk Category:</span>
+            <span className={`px-2 py-1 border font-bold text-xs uppercase ${
+              riskCategory === 'High' ? 'bg-red-50 text-red-800 border-red-300' :
+              riskCategory === 'Medium' ? 'bg-yellow-50 text-yellow-800 border-yellow-300' :
+              'bg-green-50 text-green-800 border-green-300'
+            }`}>
+              {riskCategory}
+            </span>
         </div>
       </div>
 
       {/* Warning if scenario increases risk significantly */}
       {selectedScenario > 0 && riskIndex > 70 && (
-        <div className="mt-3 bg-red-50 border border-red-200 rounded-lg p-2">
-          <p className="text-xs font-semibold text-red-800">
-            ⚠️ Warning: This scenario elevates risk to HIGH. Pre-position emergency resources.
+        <div className="mt-3 bg-red-50 border border-red-300 p-2">
+          <p className="text-xs font-bold text-red-900 uppercase">
+            WARNING: THIS SCENARIO ELEVATES RISK TO HIGH. PRE-POSITION EMERGENCY RESOURCES.
           </p>
         </div>
       )}
 
       {selectedScenario > 0 && riskCategory === 'High' && (
-        <div className="mt-3 bg-orange-50 border border-orange-200 rounded-lg p-2">
-          <p className="text-xs font-semibold text-orange-800">
-            📋 Recommended: Update emergency response plan for increased rainfall
+        <div className="mt-3 bg-orange-50 border border-orange-300 p-2">
+          <p className="text-xs font-bold text-orange-900 uppercase">
+            RECOMMENDED: UPDATE EMERGENCY RESPONSE PLAN FOR INCREASED RAINFALL
           </p>
         </div>
       )}
+      </div>
     </div>
   );
 };

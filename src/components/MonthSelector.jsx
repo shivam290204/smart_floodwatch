@@ -23,20 +23,20 @@ const MonthSelector = ({ selectedMonth, onMonthChange, isLoading = false }) => {
   const currentMonthData = months.find(m => m.value === selectedMonth);
 
   return (
-    <div className="bg-white rounded-md border border-gray-200 p-0 mb-4 overflow-hidden">
+    <div className="bg-white border border-gray-300 shadow-sm p-0 mb-4 overflow-hidden">
       {/* Left Border Accent */}
       <div className="flex h-full">
         <div className="w-1 bg-blue-900"></div>
-        <div className="flex-1 p-5">
+        <div className="flex-1 p-4 sm:p-5">
           {/* Header */}
-          <div className="flex items-start justify-between mb-4">
+          <div className="flex items-start justify-between mb-4 border-b border-gray-300 pb-3">
             <div className="flex items-start gap-3">
-              <div className="w-10 h-10 bg-gray-100 rounded-md flex items-center justify-center flex-shrink-0">
-                <History className="w-5 h-5 text-gray-700" />
+              <div className="w-10 h-10 bg-gray-100 border border-gray-300 flex items-center justify-center flex-shrink-0">
+                <History className="w-5 h-5 text-gray-800" />
               </div>
               <div>
-                <h3 className="text-base font-semibold text-gray-900 leading-tight">Historical Data Context</h3>
-                <p className="text-xs text-gray-600 mt-1 max-w-xs">
+                <h3 className="text-sm font-bold text-gray-900 uppercase tracking-wide">Historical Data Context</h3>
+                <p className="text-xs text-gray-700 mt-1 max-w-xs font-semibold uppercase">
                   Select a monsoon phase to load historical rainfall patterns and risk models.
                 </p>
               </div>
@@ -46,7 +46,7 @@ const MonthSelector = ({ selectedMonth, onMonthChange, isLoading = false }) => {
           {/* Month Selection Controls */}
           <div className="space-y-3">
             {/* Label */}
-            <label className="block text-xs font-semibold text-gray-700 uppercase tracking-wider">
+            <label className="block text-xs font-bold text-gray-800 uppercase tracking-wider">
               <Calendar className="w-4 h-4 inline-block mr-2 -mt-0.5" />
               Analysis Period
             </label>
@@ -56,7 +56,7 @@ const MonthSelector = ({ selectedMonth, onMonthChange, isLoading = false }) => {
               value={tempMonth}
               onChange={(e) => setTempMonth(e.target.value)}
               disabled={isLoading}
-              className="w-full px-3 py-2 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-offset-0 focus:border-blue-700 bg-white text-sm font-medium text-gray-900 disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
+              className="w-full px-3 py-2 border border-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-900 focus:border-blue-900 bg-gray-50 text-sm font-bold text-gray-900 disabled:opacity-60 disabled:cursor-not-allowed transition-colors uppercase"
             >
               {months.map((month) => (
                 <option key={month.value} value={month.value}>
@@ -67,16 +67,16 @@ const MonthSelector = ({ selectedMonth, onMonthChange, isLoading = false }) => {
 
             {/* Risk Level Indicator */}
             {selectedMonthData && (
-              <div className="bg-gray-50 border border-gray-200 rounded-md p-2.5 flex items-center justify-between">
-                <span className="text-xs text-gray-600">Risk Level</span>
-                <span className={`text-xs font-semibold px-2.5 py-1 rounded ${
+              <div className="bg-gray-50 border border-gray-300 p-2.5 flex items-center justify-between">
+                <span className="text-xs font-bold text-gray-800 uppercase">Risk Level</span>
+                <span className={`text-xs font-bold px-2 py-1 border uppercase ${
                   selectedMonthData.riskLevel === 'Critical' 
-                    ? 'bg-red-100 text-red-700'
+                    ? 'bg-red-50 text-red-800 border-red-300'
                     : selectedMonthData.riskLevel === 'High'
-                    ? 'bg-red-50 text-red-600'
+                    ? 'bg-orange-50 text-orange-800 border-orange-300'
                     : selectedMonthData.riskLevel === 'Medium'
-                    ? 'bg-yellow-50 text-yellow-700'
-                    : 'bg-green-50 text-green-700'
+                    ? 'bg-yellow-50 text-yellow-800 border-yellow-300'
+                    : 'bg-green-50 text-green-800 border-green-300'
                 }`}>
                   {selectedMonthData.riskLevel}
                 </span>
@@ -87,10 +87,10 @@ const MonthSelector = ({ selectedMonth, onMonthChange, isLoading = false }) => {
             <button
               onClick={handleSubmit}
               disabled={isLoading || !hasChanges}
-              className={`w-full px-4 py-2.5 rounded-md font-medium text-sm transition-all flex items-center justify-center gap-2 border ${
+              className={`w-full px-4 py-2.5 font-bold text-sm transition-all flex items-center justify-center gap-2 border uppercase tracking-wide ${
                 isLoading || !hasChanges
-                  ? 'bg-gray-100 text-gray-400 cursor-not-allowed border-gray-200'
-                  : 'bg-blue-900 text-white hover:bg-blue-800 active:bg-blue-950 border-blue-900'
+                  ? 'bg-gray-200 text-gray-500 cursor-not-allowed border-gray-300'
+                  : 'bg-blue-900 text-white hover:bg-blue-800 active:bg-blue-950 border-blue-950'
               }`}
             >
               {isLoading ? (

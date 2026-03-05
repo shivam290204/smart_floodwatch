@@ -200,23 +200,22 @@ const PriorityActionPanel = () => {
   const allResolved = wards.every(w => w.status === 'resolved');
 
   return (
-    <div className="w-full max-w-6xl mx-auto p-6">
+    <div className="w-full max-w-6xl mx-auto p-4 sm:p-6">
       {/* Header */}
-      <div className="mb-6">
-        <div className="flex items-center justify-between mb-2">
+      <div className="mb-6 bg-white border border-gray-300 shadow-sm">
+        <div className="bg-blue-900 text-white px-4 py-3 flex items-center justify-between border-b border-gray-300">
           <div className="flex items-center gap-3">
-            <Activity className="w-8 h-8 text-blue-600" />
+            <Activity className="w-6 h-6 text-blue-200" />
             <div>
-              <h2 className="text-3xl font-bold text-gray-900">Live AI Decision Support</h2>
-              <p className="text-sm text-gray-600">Real-time Priority Action Queue</p>
+              <h2 className="text-lg font-bold uppercase tracking-wide">Live AI Decision Support</h2>
+              <p className="text-xs text-blue-200 uppercase">Real-time Priority Action Queue</p>
             </div>
           </div>
-          <div className="flex items-center gap-2 text-sm">
-            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-            <span className="text-gray-600">System Active</span>
+          <div className="flex items-center gap-2 text-xs font-bold uppercase border border-blue-700 px-2 py-1 bg-blue-800">
+            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+            <span>System Active</span>
           </div>
         </div>
-        <div className="h-1 bg-gradient-to-r from-blue-600 via-purple-600 to-red-600 rounded-full"></div>
       </div>
 
       {/* Empty State - All Resolved */}
@@ -224,11 +223,11 @@ const PriorityActionPanel = () => {
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="bg-gradient-to-br from-green-50 to-emerald-100 border-2 border-green-400 rounded-xl p-8 text-center"
+          className="bg-green-50 border border-green-600 p-8 text-center shadow-sm"
         >
-          <CheckCircle2 className="w-16 h-16 text-green-600 mx-auto mb-4" />
-          <h3 className="text-2xl font-bold text-green-900 mb-2">All Systems Nominal</h3>
-          <p className="text-green-700">All priority wards have been successfully managed. Monitoring continues.</p>
+          <CheckCircle2 className="w-12 h-12 text-green-700 mx-auto mb-4" />
+          <h3 className="text-xl font-bold text-green-900 mb-2 uppercase tracking-wide">All Systems Nominal</h3>
+          <p className="text-green-800 font-semibold uppercase text-sm">All priority wards have been successfully managed. Monitoring continues.</p>
         </motion.div>
       )}
 
@@ -252,39 +251,39 @@ const PriorityActionPanel = () => {
                 layout: { duration: 0.5, type: "spring" },
                 opacity: { duration: 0.3 }
               }}
-              className={`mb-4 rounded-xl shadow-lg overflow-hidden transition-all ${
+              className={`mb-4 border shadow-sm overflow-hidden transition-all ${
                 ward.status === 'resolved' 
-                  ? 'bg-green-50 border-2 border-green-300 opacity-75' 
+                  ? 'bg-green-50 border-green-600 opacity-75' 
                   : ward.status === 'active'
-                  ? 'bg-blue-50 border-2 border-blue-500 ring-2 ring-blue-200'
+                  ? 'bg-blue-50 border-blue-700 border-l-4 border-l-blue-900'
                   : ward.status === 'deploying'
-                  ? 'bg-yellow-50 border-2 border-yellow-400'
+                  ? 'bg-yellow-50 border-yellow-600 border-l-4 border-l-yellow-700'
                   : ward.risk_score >= 80
-                  ? 'bg-red-50 border-2 border-red-400'
-                  : 'bg-white border-2 border-gray-200'
+                  ? 'bg-red-50 border-red-700 border-l-4 border-l-red-800'
+                  : 'bg-white border-gray-300 border-l-4 border-l-gray-500'
               }`}
             >
               {/* Card Header */}
-              <div className="p-5 flex items-center justify-between">
+              <div className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div className="flex items-center gap-4 flex-1">
                   {/* Priority Rank */}
-                  <div className={`w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold ${
+                  <div className={`w-10 h-10 flex items-center justify-center text-lg font-bold border ${
                     ward.status === 'resolved'
-                      ? 'bg-green-600 text-white'
+                      ? 'bg-green-800 text-white border-green-900'
                       : index === 0
-                      ? 'bg-red-600 text-white'
-                      : 'bg-gray-700 text-white'
+                      ? 'bg-red-800 text-white border-red-900'
+                      : 'bg-gray-800 text-white border-gray-900'
                   }`}>
                     {index + 1}
                   </div>
 
                   {/* Ward Info */}
                   <div className="flex-1">
-                    <h3 className="text-xl font-bold text-gray-900 mb-1">{ward.name}</h3>
+                    <h3 className="text-lg font-bold text-gray-900 mb-1 uppercase">{ward.name}</h3>
                     <div className="flex items-center gap-2">
                       <PriorityBadge score={ward.risk_score} />
                       {ward.status === 'resolved' && (
-                        <span className="text-xs text-green-700 font-semibold">✓ RESOLVED</span>
+                        <span className="text-xs text-green-800 font-bold uppercase border border-green-300 px-2 py-0.5 bg-green-100">✓ RESOLVED</span>
                       )}
                     </div>
                   </div>
@@ -295,9 +294,9 @@ const PriorityActionPanel = () => {
                   {ward.status === 'idle' && (
                     <button
                       onClick={() => handleDeploy(ward.id)}
-                      className="bg-red-600 hover:bg-red-700 text-white font-bold px-6 py-3 rounded-lg flex items-center gap-2 transition-all transform hover:scale-105 shadow-lg"
+                      className="bg-red-800 hover:bg-red-900 text-white font-bold px-6 py-2 border border-red-950 flex items-center gap-2 transition-all uppercase text-sm tracking-wide"
                     >
-                      <Zap className="w-5 h-5" />
+                      <Zap className="w-4 h-4" />
                       Deploy Team
                     </button>
                   )}
@@ -305,38 +304,38 @@ const PriorityActionPanel = () => {
                   {ward.status === 'deploying' && (
                     <button
                       disabled
-                      className="bg-yellow-600 text-white font-bold px-6 py-3 rounded-lg flex items-center gap-2"
+                      className="bg-yellow-700 text-white font-bold px-6 py-2 border border-yellow-800 flex items-center gap-2 uppercase text-sm tracking-wide"
                     >
-                      <Loader2 className="w-5 h-5 animate-spin" />
+                      <Loader2 className="w-4 h-4 animate-spin" />
                       Dispatching...
                     </button>
                   )}
                   
                   {ward.status === 'active' && (
                     <div className="flex flex-col items-end gap-1">
-                      <div className="bg-blue-600 text-white font-bold px-6 py-3 rounded-lg flex items-center gap-2">
-                        <Activity className="w-5 h-5 animate-pulse" />
+                      <div className="bg-blue-800 text-white font-bold px-6 py-2 border border-blue-900 flex items-center gap-2 uppercase text-sm tracking-wide">
+                        <Activity className="w-4 h-4 animate-pulse" />
                         Operations Active
                       </div>
-                      <div className="flex items-center gap-2 text-xs text-blue-700">
+                      <div className="flex items-center gap-2 text-xs text-blue-900 font-bold uppercase">
                         <Clock className="w-3 h-3" />
                         <span>ETA: 25 mins</span>
                       </div>
                       {/* Progress Bar */}
-                      <div className="w-48 bg-blue-200 rounded-full h-2 mt-1 overflow-hidden">
+                      <div className="w-48 bg-blue-200 h-2 mt-1 overflow-hidden border border-blue-300">
                         <motion.div
                           initial={{ width: 0 }}
                           animate={{ width: '70%' }}
                           transition={{ duration: 2, ease: "easeInOut" }}
-                          className="bg-blue-600 h-full rounded-full"
+                          className="bg-blue-800 h-full"
                         />
                       </div>
                     </div>
                   )}
                   
                   {ward.status === 'resolved' && (
-                    <div className="bg-green-600 text-white font-bold px-6 py-3 rounded-lg flex items-center gap-2">
-                      <CheckCircle2 className="w-5 h-5" />
+                    <div className="bg-green-800 text-white font-bold px-6 py-2 border border-green-900 flex items-center gap-2 uppercase text-sm tracking-wide">
+                      <CheckCircle2 className="w-4 h-4" />
                       Resolved
                     </div>
                   )}
@@ -344,46 +343,46 @@ const PriorityActionPanel = () => {
               </div>
 
               {/* Card Body - Metrics */}
-              <div className="px-5 pb-3 grid grid-cols-3 gap-4">
-                <div className="flex items-center gap-3 bg-white/50 rounded-lg p-3">
-                  <Droplets className="w-8 h-8 text-blue-600" />
+              <div className="px-4 sm:px-5 pb-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <div className="flex items-center gap-3 bg-white border border-gray-300 p-3 shadow-sm">
+                  <Droplets className="w-6 h-6 text-blue-800" />
                   <div>
-                    <div className="text-xs text-gray-600 font-semibold">Rainfall</div>
+                    <div className="text-xs text-gray-700 font-bold uppercase tracking-wide">Rainfall</div>
                     <div className="text-lg font-bold text-gray-900">{ward.rainfall_mm}mm</div>
                   </div>
-                  <TrendingUp className="w-4 h-4 text-red-500 ml-auto" />
+                  <TrendingUp className="w-4 h-4 text-red-700 ml-auto" />
                 </div>
 
-                <div className="flex items-center gap-3 bg-white/50 rounded-lg p-3">
-                  <AlertTriangle className="w-8 h-8 text-orange-600" />
+                <div className="flex items-center gap-3 bg-white border border-gray-300 p-3 shadow-sm">
+                  <AlertTriangle className="w-6 h-6 text-orange-700" />
                   <div>
-                    <div className="text-xs text-gray-600 font-semibold">Drainage Deficit</div>
+                    <div className="text-xs text-gray-700 font-bold uppercase tracking-wide">Drainage Deficit</div>
                     <div className="text-lg font-bold text-gray-900">{ward.drainage_deficit}%</div>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 bg-white/50 rounded-lg p-3">
-                  <Phone className="w-8 h-8 text-red-600" />
+                <div className="flex items-center gap-3 bg-white border border-gray-300 p-3 shadow-sm">
+                  <Phone className="w-6 h-6 text-red-800" />
                   <div>
-                    <div className="text-xs text-gray-600 font-semibold">Complaints</div>
+                    <div className="text-xs text-gray-700 font-bold uppercase tracking-wide">Complaints</div>
                     <div className="text-lg font-bold text-gray-900">{ward.complaints}</div>
                   </div>
                 </div>
               </div>
 
               {/* Card Footer - AI Reasoning (Expandable) */}
-              <div className="border-t border-gray-300">
+              <div className="border-t border-gray-300 bg-gray-50">
                 <button
                   onClick={() => toggleExpand(ward.id)}
-                  className="w-full px-5 py-3 flex items-center justify-between hover:bg-gray-100 transition-colors"
+                  className="w-full px-4 sm:px-5 py-3 flex items-center justify-between hover:bg-gray-200 transition-colors"
                 >
-                  <div className="flex items-center gap-2 text-sm font-semibold text-gray-700">
-                    🤖 <span>AI Reasoning</span>
+                  <div className="flex items-center gap-2 text-xs font-bold text-gray-800 uppercase tracking-wide">
+                    <span>System Analysis</span>
                   </div>
                   {isExpanded ? (
-                    <ChevronUp className="w-5 h-5 text-gray-600" />
+                    <ChevronUp className="w-5 h-5 text-gray-800" />
                   ) : (
-                    <ChevronDown className="w-5 h-5 text-gray-600" />
+                    <ChevronDown className="w-5 h-5 text-gray-800" />
                   )}
                 </button>
                 
@@ -396,7 +395,7 @@ const PriorityActionPanel = () => {
                       transition={{ duration: 0.3 }}
                       className="overflow-hidden"
                     >
-                      <div className="px-5 pb-4 text-sm text-gray-700 bg-slate-50 leading-relaxed">
+                      <div className="px-4 sm:px-5 pb-4 text-sm text-gray-900 font-medium bg-gray-50 leading-relaxed border-t border-gray-200 pt-3">
                         {generateAIReasoning(ward)}
                       </div>
                     </motion.div>

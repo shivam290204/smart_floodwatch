@@ -180,12 +180,12 @@ const Dashboard = () => {
       {/* Loading Overlay */}
       {isLoading && (
         <div className="fixed inset-0 bg-black bg-opacity-40 z-50 flex items-center justify-center">
-          <div className="bg-white rounded-md border border-gray-200 p-6 max-w-sm mx-4">
+          <div className="bg-white border-2 border-blue-900 p-6 max-w-sm mx-4 shadow-lg">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 border-4 border-blue-900 border-t-transparent rounded-full animate-spin"></div>
+              <div className="w-12 h-12 border-4 border-blue-900 border-t-transparent animate-spin"></div>
               <div>
-                <h3 className="font-bold text-gray-900 text-lg">Loading Data...</h3>
-                <p className="text-sm text-gray-700 mt-1">Historical Data for {currentMonth}</p>
+                <h3 className="font-bold text-gray-900 text-lg uppercase tracking-wide">Loading Data...</h3>
+                <p className="text-sm text-gray-700 mt-1 font-semibold uppercase">Historical Data for {currentMonth}</p>
               </div>
             </div>
           </div>
@@ -219,12 +219,12 @@ const Dashboard = () => {
         </>
       )}
       
-      <div className="bg-white rounded-md border border-gray-200 p-4 sm:p-6">
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+      <div className="bg-white border border-gray-300 shadow-sm">
+        <div className="bg-blue-900 text-white px-4 py-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-gray-300">
           <div>
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">
+            <h2 className="text-lg sm:text-xl font-bold uppercase tracking-wide">
               Monsoon Flood Risk Assessment Dashboard
-              <span className="text-xs sm:text-sm font-normal text-gray-700 block mt-1">
+              <span className="text-xs sm:text-sm font-normal text-blue-200 block mt-1 uppercase">
                 Real-time decision support for Delhi Municipal Corporation
               </span>
             </h2>
@@ -232,7 +232,8 @@ const Dashboard = () => {
           <DownloadReportBtn />
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4 mb-8">
+        <div className="p-4 sm:p-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4 mb-8">
           <RiskCard 
             title="Risk Level" 
             value={currentScenario.risk}
@@ -266,9 +267,11 @@ const Dashboard = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-8">
-          <div className="bg-gray-50 p-4 rounded-md border border-gray-200">
-            <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-4">Top 5 Vulnerable Wards</h3>
-            <div className="h-48 sm:h-56 md:h-64">
+          <div className="bg-white border border-gray-300">
+            <div className="bg-gray-100 border-b border-gray-300 px-3 py-2">
+              <h3 className="text-sm font-bold text-gray-800 uppercase tracking-wide">Top 5 Vulnerable Wards</h3>
+            </div>
+            <div className="p-3 h-48 sm:h-56 md:h-64">
               <Bar 
                 data={barChartData}
                 options={{
@@ -282,9 +285,11 @@ const Dashboard = () => {
             </div>
           </div>
 
-          <div className="bg-gray-50 p-4 rounded-md border border-gray-200">
-            <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-4">24-Hour Trends</h3>
-            <div className="h-48 sm:h-56 md:h-64">
+          <div className="bg-white border border-gray-300">
+            <div className="bg-gray-100 border-b border-gray-300 px-3 py-2">
+              <h3 className="text-sm font-bold text-gray-800 uppercase tracking-wide">24-Hour Trends</h3>
+            </div>
+            <div className="p-3 h-48 sm:h-56 md:h-64">
               <Line 
                 data={lineChartData}
                 options={{
@@ -299,55 +304,57 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="bg-gray-50 rounded-md border border-gray-200 p-3 sm:p-4">
-          <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-4">Priority Action Required</h3>
+        <div className="bg-white border border-gray-300">
+          <div className="bg-gray-100 border-b border-gray-300 px-3 py-2">
+            <h3 className="text-sm font-bold text-gray-800 uppercase tracking-wide">Priority Action Required</h3>
+          </div>
           <div className="overflow-x-auto text-xs sm:text-sm">
-            <table className="min-w-full divide-y divide-gray-200">
+            <table className="min-w-full divide-y divide-gray-300">
               <thead>
-                <tr className="bg-gray-100 border-b border-gray-200">
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase">Ward</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase">Risk Level</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase">Rainfall</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase">Drainage Status</th>
-                  <th className="px-4 py-3 text-left text-xs font-medium text-gray-700 uppercase">Action</th>
+                <tr className="bg-gray-50 border-b border-gray-300">
+                  <th className="px-4 py-3 text-left text-xs font-bold text-gray-800 uppercase tracking-wider">Ward</th>
+                  <th className="px-4 py-3 text-left text-xs font-bold text-gray-800 uppercase tracking-wider">Risk Level</th>
+                  <th className="px-4 py-3 text-left text-xs font-bold text-gray-800 uppercase tracking-wider">Rainfall</th>
+                  <th className="px-4 py-3 text-left text-xs font-bold text-gray-800 uppercase tracking-wider">Drainage Status</th>
+                  <th className="px-4 py-3 text-left text-xs font-bold text-gray-800 uppercase tracking-wider">Action</th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {data.vulnerableWards.slice(0, 5).map((ward) => (
                   <tr key={ward.wardId} className="border-b border-gray-200 hover:bg-gray-50">
                     <td className="px-4 py-3 whitespace-nowrap">
-                      <div className="font-medium text-gray-900">Ward {ward.wardId}</div>
-                      <div className="text-sm text-gray-700">{ward.wardName}</div>
+                      <div className="font-bold text-gray-900 uppercase">Ward {ward.wardId}</div>
+                      <div className="text-xs text-gray-600 uppercase">{ward.wardName}</div>
                     </td>
                     <td className="px-4 py-3 whitespace-nowrap">
-                      <span className={`px-2 py-1 rounded-md text-xs font-medium border ${
-                        ward.riskCategory === 'High' ? 'bg-red-50 text-red-800 border-red-200' :
-                        ward.riskCategory === 'Medium' ? 'bg-amber-50 text-amber-800 border-amber-200' :
-                        'bg-emerald-50 text-emerald-800 border-emerald-200'
+                      <span className={`px-2 py-1 text-xs font-bold uppercase border ${
+                        ward.riskCategory === 'High' ? 'bg-red-50 text-red-800 border-red-300' :
+                        ward.riskCategory === 'Medium' ? 'bg-yellow-50 text-yellow-800 border-yellow-300' :
+                        'bg-green-50 text-green-800 border-green-300'
                       }`}>
                         {ward.riskCategory}
                       </span>
                     </td>
                     <td className="px-4 py-3 whitespace-nowrap">
-                      <div className="font-medium text-gray-900">{ward.rainfall} mm</div>
-                      <div className="text-sm text-gray-700">Last 24h</div>
+                      <div className="font-bold text-gray-900">{ward.rainfall} mm</div>
+                      <div className="text-xs text-gray-600 uppercase">Last 24h</div>
                     </td>
                     <td className="px-4 py-3 whitespace-nowrap">
                       <div className="flex items-center">
-                        <div className="w-full bg-gray-200 rounded-md h-2 border border-gray-300">
+                        <div className="w-full bg-gray-200 h-2 border border-gray-300">
                           <div 
-                            className={`h-2 rounded-md ${
+                            className={`h-full ${
                               ward.drainageDeficit > 70 ? 'bg-red-700' :
-                              ward.drainageDeficit > 40 ? 'bg-amber-600' : 'bg-emerald-600'
+                              ward.drainageDeficit > 40 ? 'bg-yellow-600' : 'bg-green-600'
                             }`}
                             style={{ width: `${ward.drainageDeficit}%` }}
                           ></div>
                         </div>
-                        <span className="ml-2 text-sm text-gray-700">{ward.drainageDeficit}% deficit</span>
+                        <span className="ml-2 text-xs font-bold text-gray-700 uppercase">{ward.drainageDeficit}% Deficit</span>
                       </div>
                     </td>
                     <td className="px-4 py-3 whitespace-nowrap">
-                      <button className="px-3 py-1 bg-blue-900 text-white rounded-md text-sm hover:bg-blue-800 transition border border-blue-900">
+                      <button className="px-3 py-1 bg-blue-900 text-white text-xs font-bold uppercase hover:bg-blue-800 transition border border-blue-950">
                         Deploy Team
                       </button>
                     </td>
@@ -357,22 +364,27 @@ const Dashboard = () => {
             </table>
           </div>
         </div>
+        </div>
       </div>
 
-      <div className="bg-white rounded-md border border-gray-200 p-6">
-        <h3 className="text-xl font-bold text-gray-900 mb-4">System Insights & Recommendations</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="bg-white border-l-4 border-blue-900 p-4 rounded-md shadow-sm">
-            <h4 className="font-bold text-gray-900 mb-2">Immediate Action Required</h4>
-            <p className="text-sm text-gray-700">Wards 45, 67, 89 exceed critical risk threshold. Recommend deployment of 3 additional pump sets.</p>
-          </div>
-          <div className="bg-white border-l-4 border-blue-700 p-4 rounded-md shadow-sm">
-            <h4 className="font-bold text-gray-900 mb-2">Rising Trend Detected</h4>
-            <p className="text-sm text-gray-700">Rainfall intensity increasing in North Delhi. Prepare for possible escalation to high risk.</p>
-          </div>
-          <div className="bg-white border-l-4 border-gray-600 p-4 rounded-md shadow-sm">
-            <h4 className="font-bold text-gray-900 mb-2">Resources Optimized</h4>
-            <p className="text-sm text-gray-700">Drain clearance completed in 8 medium-risk wards. Resources available for reallocation.</p>
+      <div className="bg-white border border-gray-300 shadow-sm">
+        <div className="bg-blue-900 text-white px-4 py-3 border-b border-gray-300">
+          <h3 className="text-lg font-bold uppercase tracking-wide">System Insights & Recommendations</h3>
+        </div>
+        <div className="p-4 sm:p-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="bg-white border border-gray-300 border-l-4 border-l-red-700 p-4">
+              <h4 className="font-bold text-gray-900 mb-2 uppercase text-sm">Immediate Action Required</h4>
+              <p className="text-sm text-gray-800 font-medium">Wards 45, 67, 89 exceed critical risk threshold. Recommend deployment of 3 additional pump sets.</p>
+            </div>
+            <div className="bg-white border border-gray-300 border-l-4 border-l-yellow-600 p-4">
+              <h4 className="font-bold text-gray-900 mb-2 uppercase text-sm">Rising Trend Detected</h4>
+              <p className="text-sm text-gray-800 font-medium">Rainfall intensity increasing in North Delhi. Prepare for possible escalation to high risk.</p>
+            </div>
+            <div className="bg-white border border-gray-300 border-l-4 border-l-green-600 p-4">
+              <h4 className="font-bold text-gray-900 mb-2 uppercase text-sm">Resources Optimized</h4>
+              <p className="text-sm text-gray-800 font-medium">Drain clearance completed in 8 medium-risk wards. Resources available for reallocation.</p>
+            </div>
           </div>
         </div>
       </div>

@@ -113,32 +113,32 @@ function SOSSidebar({ selectedWardId = null, onCallHelpline = null, onReportInci
   };
 
   return (
-    <div className="fixed right-0 top-0 h-screen w-96 bg-gradient-to-b from-blue-900 to-blue-800 text-white shadow-2xl overflow-y-auto z-30">
+    <div className="fixed right-0 top-0 h-screen w-96 bg-blue-900 text-white border-l-4 border-blue-950 overflow-y-auto z-30">
       {/* Header */}
-      <div className="sticky top-0 bg-blue-950 p-6 border-b-4 border-yellow-400">
+      <div className="sticky top-0 bg-blue-950 p-6 border-b-4 border-yellow-500">
         <div className="flex items-center justify-between mb-4">
-          <h1 className="text-2xl font-bold flex items-center gap-2">
-            <span className="text-3xl">🆘</span>
+          <h1 className="text-xl font-bold flex items-center gap-2 uppercase tracking-wide">
+            <span className="text-2xl">🆘</span>
             {t.title}
           </h1>
           {/* Language Toggle */}
           <div className="flex gap-2">
             <button
               onClick={() => setLanguage('en')}
-              className={`px-3 py-1 rounded text-sm font-bold transition ${
+              className={`px-3 py-1 border text-xs font-bold transition uppercase ${
                 language === 'en' 
-                  ? 'bg-yellow-400 text-blue-900' 
-                  : 'bg-blue-700 text-white hover:bg-blue-600'
+                  ? 'bg-yellow-500 text-blue-950 border-yellow-600' 
+                  : 'bg-blue-800 text-white border-blue-700 hover:bg-blue-700'
               }`}
             >
               EN
             </button>
             <button
               onClick={() => setLanguage('hi')}
-              className={`px-3 py-1 rounded text-sm font-bold transition ${
+              className={`px-3 py-1 border text-xs font-bold transition uppercase ${
                 language === 'hi' 
-                  ? 'bg-yellow-400 text-blue-900' 
-                  : 'bg-blue-700 text-white hover:bg-blue-600'
+                  ? 'bg-yellow-500 text-blue-950 border-yellow-600' 
+                  : 'bg-blue-800 text-white border-blue-700 hover:bg-blue-700'
               }`}
             >
               HI
@@ -150,42 +150,42 @@ function SOSSidebar({ selectedWardId = null, onCallHelpline = null, onReportInci
       {/* Content */}
       <div className="p-6 space-y-6">
         {/* Ward Selection Status */}
-        <div className="bg-blue-800 rounded-lg p-4 border-l-4 border-yellow-400">
-          <h3 className="font-bold text-sm text-yellow-300 mb-2">{t.selectedWard}</h3>
+        <div className="bg-blue-800 p-4 border-l-4 border-yellow-500 border border-blue-700">
+          <h3 className="font-bold text-xs text-yellow-400 mb-2 uppercase tracking-wide">{t.selectedWard}</h3>
           {selectedWard ? (
-            <p className="text-xl font-bold text-white">{selectedWard.name}</p>
+            <p className="text-lg font-bold text-white uppercase">{selectedWard.name}</p>
           ) : (
-            <p className="text-gray-300 text-sm italic">{t.noWard}</p>
+            <p className="text-gray-300 text-sm font-semibold uppercase">{t.noWard}</p>
           )}
         </div>
 
         {selectedWard && (
           <>
             {/* Alert Status Card */}
-            <div className={`rounded-lg p-4 border-2 ${getAlertColor()} font-bold`}>
+            <div className={`p-4 border-2 ${getAlertColor()} font-bold uppercase tracking-wide`}>
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-2xl">
+                <span className="text-xl">
                   {alertStatus === 'severe' ? '🔴' : alertStatus === 'flooding' ? '🟠' : alertStatus === 'clogged' ? '🟡' : '🟢'}
                 </span>
-                <span>{t.alert}</span>
+                <span className="text-sm">{t.alert}</span>
               </div>
-              <p className="text-lg font-bold">{getAlertText()}</p>
+              <p className="text-base font-bold">{getAlertText()}</p>
             </div>
 
             {/* MCD Control Room */}
-            <div className="bg-blue-700 rounded-lg p-4 border-l-4 border-red-400">
-              <h3 className="font-bold text-yellow-300 mb-3 flex items-center gap-2">
-                <span className="text-xl">📞</span>
+            <div className="bg-blue-800 p-4 border-l-4 border-red-500 border border-blue-700">
+              <h3 className="font-bold text-yellow-400 mb-3 flex items-center gap-2 uppercase text-sm tracking-wide">
+                <span className="text-lg">📞</span>
                 {t.mcdControl}
               </h3>
               <div className="space-y-3">
                 <div>
-                  <p className="text-sm text-gray-300 mb-1">{t.phone}</p>
-                  <p className="text-2xl font-bold text-yellow-300">{selectedWard.helplineNumber}</p>
+                  <p className="text-xs text-gray-300 mb-1 uppercase font-bold">{t.phone}</p>
+                  <p className="text-xl font-bold text-yellow-400">{selectedWard.helplineNumber}</p>
                 </div>
                 <button
                   onClick={() => handleCallHelpline(selectedWard.helplineNumber.replace(/-/g, ''))}
-                  className="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg transition shadow-lg flex items-center justify-center gap-2 text-lg"
+                  className="w-full bg-red-700 hover:bg-red-800 text-white font-bold py-3 px-4 border border-red-900 transition flex items-center justify-center gap-2 text-sm uppercase tracking-wide"
                 >
                   <span>📲</span>
                   {t.callNow}
@@ -194,23 +194,23 @@ function SOSSidebar({ selectedWardId = null, onCallHelpline = null, onReportInci
             </div>
 
             {/* Nearest Hospital */}
-            <div className="bg-blue-700 rounded-lg p-4 border-l-4 border-green-400">
-              <h3 className="font-bold text-green-300 mb-3 flex items-center gap-2">
-                <span className="text-xl">🏥</span>
+            <div className="bg-blue-800 p-4 border-l-4 border-green-500 border border-blue-700">
+              <h3 className="font-bold text-green-400 mb-3 flex items-center gap-2 uppercase text-sm tracking-wide">
+                <span className="text-lg">🏥</span>
                 {t.hospital}
               </h3>
               <div className="space-y-3">
                 <div>
-                  <p className="text-sm text-gray-300 mb-1 font-semibold">{selectedWard.nearestHospital}</p>
-                  <p className="text-sm text-gray-400 mb-3">{t.distance}: <span className="text-green-300 font-bold">As mentioned</span></p>
+                  <p className="text-xs text-gray-300 mb-1 uppercase font-bold">{selectedWard.nearestHospital}</p>
+                  <p className="text-xs text-gray-400 mb-3 uppercase">{t.distance}: <span className="text-green-400 font-bold">As mentioned</span></p>
                 </div>
                 <div>
-                  <p className="text-sm text-gray-300 mb-1">{t.phone}</p>
-                  <p className="text-xl font-bold text-green-300">{selectedWard.hospitalPhone}</p>
+                  <p className="text-xs text-gray-300 mb-1 uppercase font-bold">{t.phone}</p>
+                  <p className="text-xl font-bold text-green-400">{selectedWard.hospitalPhone}</p>
                 </div>
                 <button
                   onClick={() => handleCallHelpline(selectedWard.hospitalPhone.replace(/-/g, ''))}
-                  className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg transition shadow-lg flex items-center justify-center gap-2 text-lg"
+                  className="w-full bg-green-700 hover:bg-green-800 text-white font-bold py-3 px-4 border border-green-900 transition flex items-center justify-center gap-2 text-sm uppercase tracking-wide"
                 >
                   <span>📲</span>
                   {t.callNow}
@@ -220,7 +220,7 @@ function SOSSidebar({ selectedWardId = null, onCallHelpline = null, onReportInci
                     const mapsUrl = `https://maps.google.com/?q=${selectedWard.coordinates[0]},${selectedWard.coordinates[1]}`;
                     window.open(mapsUrl, '_blank');
                   }}
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition flex items-center justify-center gap-2"
+                  className="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 border border-blue-900 transition flex items-center justify-center gap-2 text-xs uppercase tracking-wide"
                 >
                   <span>🗺️</span>
                   {t.directionsTo} {selectedWard.nearestHospital.split(' - ')[0]}
@@ -229,25 +229,25 @@ function SOSSidebar({ selectedWardId = null, onCallHelpline = null, onReportInci
             </div>
 
             {/* Ward Info Card */}
-            <div className="bg-blue-700 rounded-lg p-4 border-l-4 border-cyan-400">
-              <h3 className="font-bold text-cyan-300 mb-3 flex items-center gap-2">
-                <span className="text-xl">📍</span>
+            <div className="bg-blue-800 p-4 border-l-4 border-cyan-500 border border-blue-700">
+              <h3 className="font-bold text-cyan-400 mb-3 flex items-center gap-2 uppercase text-sm tracking-wide">
+                <span className="text-lg">📍</span>
                 Ward Information
               </h3>
-              <div className="space-y-2 text-sm">
-                <div className="flex justify-between">
+              <div className="space-y-2 text-xs uppercase font-bold">
+                <div className="flex justify-between border-b border-blue-700 pb-1">
                   <span className="text-gray-300">Area:</span>
-                  <span className="font-bold text-white">{selectedWard.area_sqkm} sq km</span>
+                  <span className="text-white">{selectedWard.area_sqkm} sq km</span>
                 </div>
-                <div className="flex justify-between">
+                <div className="flex justify-between border-b border-blue-700 pb-1">
                   <span className="text-gray-300">Population Density:</span>
-                  <span className="font-bold text-white">High</span>
+                  <span className="text-white">High</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-300">Drainage Status:</span>
-                  <span className={`font-bold ${
-                    selectedWard.drainageCapacity > 60 ? 'text-green-300' :
-                    selectedWard.drainageCapacity > 40 ? 'text-yellow-300' : 'text-red-300'
+                  <span className={`${
+                    selectedWard.drainageCapacity > 60 ? 'text-green-400' :
+                    selectedWard.drainageCapacity > 40 ? 'text-yellow-400' : 'text-red-400'
                   }`}>
                     {selectedWard.drainageCapacity}% Capacity
                   </span>
@@ -256,26 +256,26 @@ function SOSSidebar({ selectedWardId = null, onCallHelpline = null, onReportInci
             </div>
 
             {/* Safety Tips */}
-            <div className="bg-blue-700 rounded-lg p-4 border-l-4 border-purple-400">
-              <h3 className="font-bold text-purple-300 mb-3 flex items-center gap-2">
-                <span className="text-xl">⚠️</span>
+            <div className="bg-blue-800 p-4 border-l-4 border-purple-500 border border-blue-700">
+              <h3 className="font-bold text-purple-400 mb-3 flex items-center gap-2 uppercase text-sm tracking-wide">
+                <span className="text-lg">⚠️</span>
                 {t.safetyTips}
               </h3>
-              <ul className="space-y-2 text-sm text-gray-200">
-                <li className="flex gap-2">
-                  <span>✓</span>
+              <ul className="space-y-2 text-xs text-gray-200 uppercase font-bold">
+                <li className="flex gap-2 items-start">
+                  <span className="text-purple-400">✓</span>
                   <span>Avoid waterlogged areas and moving water</span>
                 </li>
-                <li className="flex gap-2">
-                  <span>✓</span>
+                <li className="flex gap-2 items-start">
+                  <span className="text-purple-400">✓</span>
                   <span>Do not touch downed electrical lines</span>
                 </li>
-                <li className="flex gap-2">
-                  <span>✓</span>
+                <li className="flex gap-2 items-start">
+                  <span className="text-purple-400">✓</span>
                   <span>Listen to official emergency broadcasts</span>
                 </li>
-                <li className="flex gap-2">
-                  <span>✓</span>
+                <li className="flex gap-2 items-start">
+                  <span className="text-purple-400">✓</span>
                   <span>Keep emergency numbers saved</span>
                 </li>
               </ul>
@@ -285,14 +285,14 @@ function SOSSidebar({ selectedWardId = null, onCallHelpline = null, onReportInci
             <div className="grid grid-cols-2 gap-3">
               <button
                 onClick={onReportIncident}
-                className="bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center gap-2"
+                className="bg-orange-700 hover:bg-orange-800 text-white font-bold py-3 px-4 border border-orange-900 transition flex items-center justify-center gap-2 text-xs uppercase tracking-wide"
               >
                 <span>📝</span>
                 {t.reportIncident}
               </button>
               <button
                 onClick={() => window.location.href = '/map'}
-                className="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center gap-2"
+                className="bg-cyan-700 hover:bg-cyan-800 text-white font-bold py-3 px-4 border border-cyan-900 transition flex items-center justify-center gap-2 text-xs uppercase tracking-wide"
               >
                 <span>🗺️</span>
                 {t.viewMap}

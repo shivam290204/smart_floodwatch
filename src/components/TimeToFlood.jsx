@@ -69,7 +69,7 @@ const TimeToFlood = ({ ward }) => {
   };
 
   return (
-    <div className={`${bgColor} ${borderColor} ${borderLeftClass} border-4 border-l-4 rounded-md p-4 mt-3`}>
+    <div className={`${bgColor} border border-gray-300 ${borderLeftClass} border-l-4 p-4 mt-3`}>
       <div className="flex items-center gap-2 mb-2">
         <h4 className="font-bold text-sm uppercase tracking-wide text-gray-900">
           Time-to-Flood Estimate
@@ -82,18 +82,18 @@ const TimeToFlood = ({ ward }) => {
             <span className={`text-2xl sm:text-3xl font-bold ${textColor}`}>
               {timeToFlood.toFixed(1)}
             </span>
-            <span className="text-base sm:text-lg font-semibold text-gray-700">hours</span>
+            <span className="text-base sm:text-lg font-semibold text-gray-700 uppercase">Hours</span>
           </div>
-          <p className={`text-xs sm:text-sm mt-2 font-semibold ${textColor}`}>{message}</p>
+          <p className={`text-xs sm:text-sm mt-2 font-bold uppercase ${textColor}`}>{message}</p>
           
-          <div className="mt-3 pt-3 border-t border-gray-300 space-y-1 text-xs sm:text-sm text-gray-600">
+          <div className="mt-3 pt-3 border-t border-gray-300 space-y-1 text-xs sm:text-sm text-gray-700">
             <div className="flex justify-between">
-              <span>Remaining Buffer:</span>
-              <span className="font-semibold">{remainingBuffer.toFixed(1)} mm</span>
+              <span className="uppercase">Remaining Buffer:</span>
+              <span className="font-bold">{remainingBuffer.toFixed(1)} mm</span>
             </div>
             <div className="flex justify-between">
-              <span>Rainfall Rate:</span>
-              <span className="font-semibold">{rainfallIntensity.toFixed(1)} mm/hr</span>
+              <span className="uppercase">Rainfall Rate:</span>
+              <span className="font-bold">{rainfallIntensity.toFixed(1)} mm/hr</span>
             </div>
           </div>
         </div>
@@ -114,9 +114,9 @@ const TimeToFlood = ({ ward }) => {
       )}
 
       {timeToFlood > 0 && timeToFlood < 6 && (
-        <div className="mt-3 bg-white rounded p-2 border border-orange-200">
-          <p className="text-xs sm:text-sm font-semibold text-orange-800">
-            ⚡ Quick Action: Deploy pumps and clear priority drains now
+        <div className="mt-3 bg-white p-2 border border-gray-400 border-l-4 border-l-blue-900">
+          <p className="text-xs sm:text-sm font-bold text-gray-900 uppercase tracking-wide">
+            ACTION REQUIRED: DEPLOY PUMPS AND CLEAR PRIORITY DRAINS NOW
           </p>
         </div>
       )}

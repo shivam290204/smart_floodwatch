@@ -74,7 +74,7 @@ function AppContent({
   const { selectedMonth } = useDataContext();
 
   const Navigation = () => (
-    <div className="bg-white shadow-sm border-b border-gray-200">
+    <div className="bg-white border-b-4 border-blue-900">
       <div className="container mx-auto px-6">
         <div className="flex items-center gap-1">
           {[
@@ -86,16 +86,13 @@ function AppContent({
             <button
               key={view.id}
               onClick={() => setCurrentView(view.id)}
-              className={`flex items-center gap-2 px-6 py-4 font-semibold transition-all relative ${
+              className={`flex items-center gap-2 px-6 py-4 font-bold uppercase tracking-wide transition-all relative ${
                 currentView === view.id
-                  ? 'text-blue-700 bg-white'
-                  : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                  ? 'text-blue-900 bg-gray-100 border-t-4 border-blue-900'
+                  : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50 border-t-4 border-transparent'
               }`}
             >
               {view.label}
-              {currentView === view.id && (
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-blue-700"></div>
-              )}
             </button>
           ))}
         </div>
@@ -118,10 +115,10 @@ function AppContent({
           <>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <div className="lg:col-span-2">
-                <div className="bg-white rounded-xl shadow-lg p-4">
-                  <h2 className="text-2xl font-bold mb-4 text-gray-800">
+                <div className="bg-white border border-gray-300 shadow-sm p-4">
+                  <h2 className="text-xl font-bold mb-4 text-gray-900 uppercase tracking-wide">
                     Delhi Flood Risk Map
-                    <span className="text-sm font-normal text-gray-500 ml-2">
+                    <span className="text-xs font-bold text-blue-700 ml-2 uppercase">
                       Real-time Monitoring
                     </span>
                   </h2>

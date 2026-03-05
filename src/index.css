@@ -10,7 +10,6 @@
 }
 
 .leaflet-container {
-	@apply rounded-lg;
 	height: 500px;
 	width: 100%;
 }

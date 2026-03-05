@@ -3,11 +3,10 @@ import React from 'react';
 const DecisionTrace = ({ ward }) => {
   if (!ward) {
     return (
-      <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
-        <div className="text-center text-gray-500 py-8">
-          <span className="text-4xl mb-3 block">🗺️</span>
-          <p className="font-semibold">Click on any ward to see decision analysis</p>
-          <p className="text-sm mt-2">WHY • WHAT • HOW</p>
+      <div className="bg-white border border-gray-300 shadow-sm p-6">
+        <div className="text-center text-gray-600 py-8">
+          <p className="font-bold uppercase tracking-wide">Click on any ward to see decision analysis</p>
+          <p className="text-xs mt-2 font-semibold">WHY • WHAT • HOW</p>
         </div>
       </div>
     );
@@ -29,38 +28,37 @@ const DecisionTrace = ({ ward }) => {
   const needsTrafficAdvisory = ward.riskIndex > 70;
 
   return (
-    <div className="bg-white rounded-md border border-gray-200 shadow-sm">
+    <div className="bg-white border border-gray-300 shadow-sm">
       {/* Header */}
-      <div className="bg-blue-900 text-white p-4 rounded-t-md border-b border-blue-800">
+      <div className="bg-blue-900 text-white p-3 border-b border-gray-300">
         <div>
-          <h3 className="text-lg font-bold">Decision Trace</h3>
-          <p className="text-sm text-gray-100">Ward {ward.wardId} – {ward.wardName}</p>
+          <h3 className="text-lg font-bold uppercase tracking-wide">Decision Trace</h3>
+          <p className="text-xs text-blue-200 uppercase font-semibold">Ward {ward.wardId} – {ward.wardName}</p>
         </div>
       </div>
 
-      <div className="p-5 space-y-4">
+      <div className="p-4 space-y-4">
         {/* WHY Section */}
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-xl">🔍</span>
-            <h4 className="font-bold text-gray-800 text-sm uppercase tracking-wide">Why is this risky?</h4>
+            <h4 className="font-bold text-gray-900 text-sm uppercase tracking-wide">Why is this risky?</h4>
           </div>
-          <div className="bg-gray-50 rounded-md p-3 space-y-2 text-sm border border-gray-200">
+          <div className="bg-gray-50 border border-gray-300 p-3 space-y-2 text-sm">
             <div className="flex justify-between">
-              <span className="text-gray-700">Rainfall Anomaly:</span>
-              <span className={`font-semibold ${rainfallAnomaly > 20 ? 'text-blue-900' : rainfallAnomaly > 0 ? 'text-blue-700' : 'text-gray-600'}`}>
+              <span className="text-gray-800 font-semibold uppercase">Rainfall Anomaly:</span>
+              <span className={`font-bold ${rainfallAnomaly > 20 ? 'text-red-800' : rainfallAnomaly > 0 ? 'text-yellow-700' : 'text-green-700'}`}>
                 {rainfallAnomaly > 0 ? '+' : ''}{rainfallAnomaly}%
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-700">Drainage Stress:</span>
-              <span className={`font-semibold ${drainageStress > 60 ? 'text-blue-900' : drainageStress > 40 ? 'text-blue-700' : 'text-gray-600'}`}>
+              <span className="text-gray-800 font-semibold uppercase">Drainage Stress:</span>
+              <span className={`font-bold ${drainageStress > 60 ? 'text-red-800' : drainageStress > 40 ? 'text-yellow-700' : 'text-green-700'}`}>
                 {drainageStress}% capacity used
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-gray-700">Historical Flood Events:</span>
-              <span className="font-semibold text-gray-800">{historicalEvents} incidents</span>
+              <span className="text-gray-800 font-semibold uppercase">Historical Flood Events:</span>
+              <span className="font-bold text-gray-900">{historicalEvents} incidents</span>
             </div>
           </div>
         </div>
@@ -68,22 +66,21 @@ const DecisionTrace = ({ ward }) => {
         {/* WHAT Section */}
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-xl">📊</span>
-            <h4 className="font-bold text-gray-800 text-sm uppercase tracking-wide">What to expect?</h4>
+            <h4 className="font-bold text-gray-900 text-sm uppercase tracking-wide">What to expect?</h4>
           </div>
-          <div className="bg-gray-50 rounded-md p-3 space-y-2 text-sm border border-gray-200">
+          <div className="bg-gray-50 border border-gray-300 p-3 space-y-2 text-sm">
             <div className="flex justify-between items-center">
-              <span className="text-gray-700">Surface Water Accumulation:</span>
-              <span className={`font-semibold px-2 py-1 rounded-md border ${hasWaterLogging ? 'bg-blue-50 text-blue-900 border-blue-200' : 'bg-gray-100 text-gray-700 border-gray-300'}`}>
+              <span className="text-gray-800 font-semibold uppercase">Surface Water Accumulation:</span>
+              <span className={`font-bold px-2 py-1 border text-xs uppercase ${hasWaterLogging ? 'bg-red-50 text-red-800 border-red-300' : 'bg-green-50 text-green-800 border-green-300'}`}>
                 {hasWaterLogging ? 'Likely' : 'Unlikely'}
               </span>
             </div>
             <div className="flex justify-between items-center">
-              <span className="text-gray-700">Disruption Level:</span>
-              <span className={`font-semibold px-2 py-1 rounded ${
-                disruptionLevel === 'High' ? 'bg-red-100 text-red-700' : 
-                disruptionLevel === 'Medium' ? 'bg-yellow-100 text-yellow-700' : 
-                'bg-green-100 text-green-700'
+              <span className="text-gray-800 font-semibold uppercase">Disruption Level:</span>
+              <span className={`font-bold px-2 py-1 border text-xs uppercase ${
+                disruptionLevel === 'High' ? 'bg-red-50 text-red-800 border-red-300' : 
+                disruptionLevel === 'Medium' ? 'bg-yellow-50 text-yellow-800 border-yellow-300' : 
+                'bg-green-50 text-green-800 border-green-300'
               }`}>
                 {disruptionLevel}
               </span>
@@ -96,16 +93,16 @@ const DecisionTrace = ({ ward }) => {
           <div className="flex items-center gap-2 mb-2">
             <h4 className="font-bold text-gray-900 text-sm uppercase tracking-wide">How to respond?</h4>
           </div>
-          <div className="bg-gray-50 rounded-md p-3 space-y-2 text-sm border border-gray-200">
+          <div className="bg-gray-50 border border-gray-300 p-3 space-y-2 text-sm">
             <div className="flex items-start gap-2">
-              <span className={`font-bold ${needsPumps ? 'text-blue-900' : 'text-gray-400'}`}>
+              <span className={`font-bold ${needsPumps ? 'text-blue-800' : 'text-gray-400'}`}>
                 {needsPumps ? '✓' : '○'}
               </span>
               <div className="flex-1">
-                <span className={needsPumps ? 'text-gray-900 font-semibold' : 'text-gray-500'}>
+                <span className={`uppercase text-xs font-bold ${needsPumps ? 'text-gray-900' : 'text-gray-500'}`}>
                   Deploy Mobile Pumps
                 </span>
-                {needsPumps && <p className="text-xs text-gray-600 mt-1">Immediate deployment recommended</p>}
+                {needsPumps && <p className="text-xs text-gray-700 mt-1 font-semibold">Immediate deployment recommended</p>}
               </div>
             </div>
             <div className="flex items-start gap-2">
@@ -113,36 +110,36 @@ const DecisionTrace = ({ ward }) => {
                 {needsDrainCleaning ? '✓' : '○'}
               </span>
               <div className="flex-1">
-                <span className={needsDrainCleaning ? 'text-gray-900 font-semibold' : 'text-gray-500'}>
+                <span className={`uppercase text-xs font-bold ${needsDrainCleaning ? 'text-gray-900' : 'text-gray-500'}`}>
                   Priority Drain Cleaning
                 </span>
-                {needsDrainCleaning && <p className="text-xs text-gray-600 mt-1">Clear blocked drains within 24h</p>}
+                {needsDrainCleaning && <p className="text-xs text-gray-700 mt-1 font-semibold">Clear blocked drains within 24h</p>}
               </div>
             </div>
             <div className="flex items-start gap-2">
-              <span className={`font-bold ${needsTrafficAdvisory ? 'text-blue-700' : 'text-gray-400'}`}>
+              <span className={`font-bold ${needsTrafficAdvisory ? 'text-blue-800' : 'text-gray-400'}`}>
                 {needsTrafficAdvisory ? '✓' : '○'}
               </span>
               <div className="flex-1">
-                <span className={needsTrafficAdvisory ? 'text-gray-900 font-semibold' : 'text-gray-500'}>
+                <span className={`uppercase text-xs font-bold ${needsTrafficAdvisory ? 'text-gray-900' : 'text-gray-500'}`}>
                   Traffic Advisory Required
                 </span>
-                {needsTrafficAdvisory && <p className="text-xs text-gray-600 mt-1">Issue public alert for route diversions</p>}
+                {needsTrafficAdvisory && <p className="text-xs text-gray-700 mt-1 font-semibold">Issue public alert for route diversions</p>}
               </div>
             </div>
           </div>
         </div>
 
         {/* Risk Score Summary */}
-        <div className="bg-gray-50 rounded-md p-3 border-l-4 border-blue-900 shadow-sm">
+        <div className="bg-white border border-gray-300 p-3 border-l-4 border-l-blue-900">
           <div className="flex justify-between items-center">
-            <span className="text-sm font-semibold text-gray-900">Overall Risk Score:</span>
+            <span className="text-sm font-bold text-gray-900 uppercase">Overall Risk Score:</span>
             <span className="text-2xl font-bold text-blue-900">
               {Math.round(ward.riskIndex)}/100
             </span>
           </div>
-          <p className="text-xs text-gray-700 mt-1">
-            Category: <span className="font-semibold text-gray-900">{ward.riskCategory}</span>
+          <p className="text-xs text-gray-700 mt-1 uppercase font-semibold">
+            Category: <span className="font-bold text-gray-900">{ward.riskCategory}</span>
           </p>
         </div>
       </div>

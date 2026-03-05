@@ -88,8 +88,8 @@ const FloodMap = ({ onWardSelect }) => {
   };
 
   return (
-    <div className="relative">
-      <MapContainer center={center} zoom={zoom} className="h-96 sm:h-[500px] md:h-[600px] lg:h-[700px] w-full rounded-xl shadow-lg">
+    <div className="relative border-2 border-gray-400">
+      <MapContainer center={center} zoom={zoom} className="h-96 sm:h-[500px] md:h-[600px] lg:h-[700px] w-full">
         <LayersControl position="topright">
           <BaseLayer checked name="OpenStreetMap">
             <TileLayer
@@ -169,20 +169,20 @@ const FloodMap = ({ onWardSelect }) => {
         </LayersControl>
       </MapContainer>
 
-      <div className="absolute bottom-4 left-4 bg-white p-3 rounded-lg shadow-md z-[1000]">
-        <h3 className="font-bold text-sm mb-2">Map Legend</h3>
-        <div className="flex flex-col space-y-1">
+      <div className="absolute bottom-4 left-4 bg-white p-3 border-2 border-gray-400 z-[1000]">
+        <h3 className="font-bold text-sm mb-2 uppercase tracking-wide">Map Legend</h3>
+        <div className="flex flex-col space-y-2">
           <div className="flex items-center">
-            <div className="w-4 h-4 bg-flood-green rounded-full mr-2"></div>
-            <span className="text-xs">Low Risk (0-40)</span>
+            <div className="w-4 h-4 bg-flood-green border border-gray-600 mr-2"></div>
+            <span className="text-xs font-bold uppercase">Low Risk (0-40)</span>
           </div>
           <div className="flex items-center">
-            <div className="w-4 h-4 bg-flood-yellow rounded-full mr-2"></div>
-            <span className="text-xs">Medium Risk (41-70)</span>
+            <div className="w-4 h-4 bg-flood-yellow border border-gray-600 mr-2"></div>
+            <span className="text-xs font-bold uppercase">Medium Risk (41-70)</span>
           </div>
           <div className="flex items-center">
-            <div className="w-4 h-4 bg-flood-red rounded-full mr-2"></div>
-            <span className="text-xs">High Risk (71-100)</span>
+            <div className="w-4 h-4 bg-flood-red border border-gray-600 mr-2"></div>
+            <span className="text-xs font-bold uppercase">High Risk (71-100)</span>
           </div>
         </div>
       </div>

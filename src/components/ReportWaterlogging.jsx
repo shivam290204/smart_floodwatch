@@ -77,14 +77,14 @@ const ReportWaterlogging = ({ onReportSubmit }) => {
       
       {/* Modal Dialog */}
       <div 
-        className="relative bg-white rounded-xl shadow-2xl max-w-md w-full p-6 z-10"
+        className="relative bg-white border-2 border-gray-400 shadow-lg max-w-md w-full p-6 z-10"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex justify-between items-center mb-4">
-          <h3 className="text-2xl font-bold text-gray-900">Report Water-Logging</h3>
+        <div className="flex justify-between items-center mb-4 border-b border-gray-300 pb-2">
+          <h3 className="text-xl font-bold text-gray-900 uppercase tracking-wide">Report Water-Logging</h3>
           <button
             onClick={() => setShowModal(false)}
-            className="text-gray-500 hover:text-gray-700 text-2xl leading-none"
+            className="text-gray-500 hover:text-gray-900 text-2xl leading-none font-bold"
             aria-label="Close modal"
           >
             ×
@@ -92,22 +92,22 @@ const ReportWaterlogging = ({ onReportSubmit }) => {
         </div>
 
         {showSuccess ? (
-          <div className="bg-green-50 border border-green-400 rounded-lg p-6 text-center">
-            <div className="text-5xl mb-3">✓</div>
-            <h4 className="text-xl font-bold text-green-800 mb-2">Report Submitted!</h4>
-            <p className="text-green-700">Thank you for reporting. Municipal teams have been notified.</p>
+          <div className="bg-green-50 border border-green-600 p-6 text-center">
+            <div className="text-5xl mb-3 text-green-700">✓</div>
+            <h4 className="text-lg font-bold text-green-900 mb-2 uppercase">Report Submitted!</h4>
+            <p className="text-green-800 font-semibold text-sm uppercase">Thank you for reporting. Municipal teams have been notified.</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">
-                Ward <span className="text-red-500">*</span>
+              <label className="block text-xs font-bold text-gray-800 mb-1 uppercase tracking-wide">
+                Ward <span className="text-red-600">*</span>
               </label>
               <select
                 required
                 value={formData.ward}
                 onChange={(e) => setFormData({ ...formData, ward: e.target.value })}
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full border border-gray-400 px-3 py-2 focus:ring-2 focus:ring-blue-900 focus:border-blue-900 bg-gray-50 text-gray-900 font-medium"
               >
                 <option value="">Select Ward</option>
                 {wards.map((ward) => (
@@ -119,8 +119,8 @@ const ReportWaterlogging = ({ onReportSubmit }) => {
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">
-                Location / Landmark <span className="text-red-500">*</span>
+              <label className="block text-xs font-bold text-gray-800 mb-1 uppercase tracking-wide">
+                Location / Landmark <span className="text-red-600">*</span>
               </label>
               <input
                 type="text"
@@ -128,13 +128,13 @@ const ReportWaterlogging = ({ onReportSubmit }) => {
                 value={formData.location}
                 onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                 placeholder="e.g. Near Central Park, Main Road"
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full border border-gray-400 px-3 py-2 focus:ring-2 focus:ring-blue-900 focus:border-blue-900 bg-gray-50 text-gray-900 font-medium"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">
-                Severity <span className="text-red-500">*</span>
+              <label className="block text-xs font-bold text-gray-800 mb-1 uppercase tracking-wide">
+                Severity <span className="text-red-600">*</span>
               </label>
               <div className="grid grid-cols-3 gap-2">
                 {['Low', 'Medium', 'High'].map((severity) => (
@@ -142,14 +142,14 @@ const ReportWaterlogging = ({ onReportSubmit }) => {
                     key={severity}
                     type="button"
                     onClick={() => setFormData({ ...formData, severity })}
-                    className={`py-2 px-4 rounded-lg font-semibold transition-all ${
+                    className={`py-2 px-4 border font-bold uppercase text-xs tracking-wide transition-all ${
                       formData.severity === severity
                         ? severity === 'Low'
-                          ? 'bg-green-600 text-white'
+                          ? 'bg-green-800 text-white border-green-900'
                           : severity === 'Medium'
-                          ? 'bg-orange-600 text-white'
-                          : 'bg-red-600 text-white'
-                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                          ? 'bg-orange-700 text-white border-orange-800'
+                          : 'bg-red-800 text-white border-red-900'
+                        : 'bg-gray-100 text-gray-700 border-gray-300 hover:bg-gray-200'
                     }`}
                   >
                     {severity}
@@ -159,7 +159,7 @@ const ReportWaterlogging = ({ onReportSubmit }) => {
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-1">
+              <label className="block text-xs font-bold text-gray-800 mb-1 uppercase tracking-wide">
                 Additional Details (Optional)
               </label>
               <textarea
@@ -167,25 +167,25 @@ const ReportWaterlogging = ({ onReportSubmit }) => {
                 onChange={(e) => setFormData({ ...formData, comment: e.target.value })}
                 placeholder="Describe the situation..."
                 rows="3"
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                className="w-full border border-gray-400 px-3 py-2 focus:ring-2 focus:ring-blue-900 focus:border-blue-900 bg-gray-50 text-gray-900 font-medium"
               />
             </div>
 
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-sm text-blue-800">
+            <div className="bg-blue-50 border border-blue-300 p-3 text-xs text-blue-900 font-semibold uppercase">
               <strong>Note:</strong> Your report will be sent to MCD control room for immediate action.
             </div>
 
-            <div className="flex gap-3">
+            <div className="flex gap-3 pt-2">
               <button
                 type="submit"
-                className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 rounded-lg transition-colors"
+                className="flex-1 bg-blue-900 hover:bg-blue-800 text-white font-bold py-3 border border-blue-950 transition-colors uppercase tracking-wide text-sm"
               >
                 Submit Report
               </button>
               <button
                 type="button"
                 onClick={() => setShowModal(false)}
-                className="px-6 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold rounded-lg transition-colors"
+                className="px-6 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold border border-gray-400 transition-colors uppercase tracking-wide text-sm"
               >
                 Cancel
               </button>

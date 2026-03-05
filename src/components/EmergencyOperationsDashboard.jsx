@@ -65,24 +65,24 @@ const EmergencyOperationsDashboard = ({ onBack }) => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="min-h-screen bg-gray-100">
       {/* Header */}
-      <div className="bg-white shadow-sm sticky top-0 z-10">
-        <div className="container mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="bg-blue-900 border-b-4 border-blue-950 sticky top-0 z-10">
+        <div className="container mx-auto px-4 sm:px-6 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Emergency Operations Dashboard</h1>
-            <p className="text-gray-600 mt-1">Real-time resource allocation and response coordination</p>
+            <h1 className="text-xl sm:text-3xl font-bold text-white uppercase tracking-wide">Emergency Operations Dashboard</h1>
+            <p className="text-blue-200 mt-1 text-xs sm:text-sm font-semibold uppercase">Real-time resource allocation and response coordination</p>
           </div>
-          <div className="flex gap-3">
+          <div className="flex flex-wrap gap-3">
             <button
               onClick={() => setShowJurisdictionModal(true)}
-              className="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition"
+              className="px-4 sm:px-6 py-2 bg-white text-blue-900 font-bold border border-gray-300 hover:bg-gray-100 transition uppercase text-xs sm:text-sm tracking-wide"
             >
               Check Jurisdiction
             </button>
             <button
               onClick={onBack}
-              className="px-6 py-2 bg-gray-300 text-gray-900 font-semibold rounded-lg hover:bg-gray-400 transition"
+              className="px-4 sm:px-6 py-2 bg-gray-800 text-white font-bold border border-gray-900 hover:bg-gray-900 transition uppercase text-xs sm:text-sm tracking-wide"
             >
               Back to Dashboard
             </button>
@@ -98,52 +98,52 @@ const EmergencyOperationsDashboard = ({ onBack }) => {
 
       {/* Confirmation Message */}
       {confirmMessage && (
-        <div className="bg-green-100 border-l-4 border-green-500 p-4 m-4 rounded-lg">
-          <p className="text-green-800 font-medium">{confirmMessage}</p>
+        <div className="bg-green-50 border-l-4 border-green-600 border-y border-r border-gray-300 p-4 m-4">
+          <p className="text-green-800 font-bold uppercase text-sm">{confirmMessage}</p>
         </div>
       )}
 
       {/* Alert Banner */}
       {highRiskWards.length > 0 && (
-        <div className="bg-red-50 border-l-4 border-red-600 p-4 m-4 rounded-lg">
-          <p className="text-red-800 font-bold">
+        <div className="bg-red-50 border-l-4 border-red-700 border-y border-r border-gray-300 p-4 m-4">
+          <p className="text-red-800 font-bold uppercase text-sm">
             Immediate intervention required in {highRiskWards.length} ward(s)
           </p>
         </div>
       )}
 
-      <div className="container mx-auto px-6 py-8">
+      <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {/* SECTION 1: Resource Status Overview */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-          <div className="bg-white rounded-lg shadow-md p-6 border-t-4 border-blue-500">
-            <p className="text-gray-600 text-sm font-semibold uppercase">Pumps Available</p>
-            <p className="text-4xl font-bold text-blue-600 mt-2">{availablePumps}</p>
-            <p className="text-gray-500 text-xs mt-1">of {totalPumps} total</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          <div className="bg-white border border-gray-300 shadow-sm p-4 sm:p-6 border-t-4 border-t-blue-900">
+            <p className="text-gray-700 text-xs font-bold uppercase tracking-wide">Pumps Available</p>
+            <p className="text-3xl sm:text-4xl font-bold text-blue-900 mt-2">{availablePumps}</p>
+            <p className="text-gray-600 text-xs mt-1 font-semibold uppercase">of {totalPumps} total</p>
           </div>
 
-          <div className="bg-white rounded-lg shadow-md p-6 border-t-4 border-orange-500">
-            <p className="text-gray-600 text-sm font-semibold uppercase">Pumps Deployed</p>
-            <p className="text-4xl font-bold text-orange-600 mt-2">{deployedPumps}</p>
-            <p className="text-gray-500 text-xs mt-1">Active deployment</p>
+          <div className="bg-white border border-gray-300 shadow-sm p-4 sm:p-6 border-t-4 border-t-orange-600">
+            <p className="text-gray-700 text-xs font-bold uppercase tracking-wide">Pumps Deployed</p>
+            <p className="text-3xl sm:text-4xl font-bold text-orange-700 mt-2">{deployedPumps}</p>
+            <p className="text-gray-600 text-xs mt-1 font-semibold uppercase">Active deployment</p>
           </div>
 
-          <div className="bg-white rounded-lg shadow-md p-6 border-t-4 border-green-500">
-            <p className="text-gray-600 text-sm font-semibold uppercase">Response Teams</p>
-            <p className="text-4xl font-bold text-green-600 mt-2">{activeTeams}</p>
-            <p className="text-gray-500 text-xs mt-1">Teams active</p>
+          <div className="bg-white border border-gray-300 shadow-sm p-4 sm:p-6 border-t-4 border-t-green-700">
+            <p className="text-gray-700 text-xs font-bold uppercase tracking-wide">Response Teams</p>
+            <p className="text-3xl sm:text-4xl font-bold text-green-800 mt-2">{activeTeams}</p>
+            <p className="text-gray-600 text-xs mt-1 font-semibold uppercase">Teams active</p>
           </div>
 
-          <div className="bg-white rounded-lg shadow-md p-6 border-t-4 border-purple-500">
-            <p className="text-gray-600 text-sm font-semibold uppercase">Avg Response Time</p>
-            <p className="text-4xl font-bold text-purple-600 mt-2">{avgResponseTime}m</p>
-            <p className="text-gray-500 text-xs mt-1">Minutes to deploy</p>
+          <div className="bg-white border border-gray-300 shadow-sm p-4 sm:p-6 border-t-4 border-t-purple-700">
+            <p className="text-gray-700 text-xs font-bold uppercase tracking-wide">Avg Response Time</p>
+            <p className="text-3xl sm:text-4xl font-bold text-purple-800 mt-2">{avgResponseTime}m</p>
+            <p className="text-gray-600 text-xs mt-1 font-semibold uppercase">Minutes to deploy</p>
           </div>
         </div>
 
         {/* SECTION 2: Priority Wards List */}
         {highRiskWards.length > 0 && (
-          <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Priority Deployment Required</h2>
+          <div className="bg-white border border-gray-300 shadow-sm p-4 sm:p-6 mb-8">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6 uppercase tracking-wide border-b border-gray-300 pb-2">Priority Deployment Required</h2>
             <div className="space-y-4">
               {highRiskWards.map((ward) => {
                 const wardName = ward.properties?.name;
@@ -152,45 +152,45 @@ const EmergencyOperationsDashboard = ({ onBack }) => {
                 const isTeamDeployed = isWardDeployed(wardName, 'team');
 
                 return (
-                  <div key={wardName} className="border-l-4 border-red-500 bg-red-50 p-4 rounded-lg">
-                    <div className="flex items-start justify-between">
+                  <div key={wardName} className="border-l-4 border-red-700 border-y border-r border-gray-300 bg-red-50 p-4">
+                    <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
                       <div className="flex-1">
-                        <h3 className="text-lg font-bold text-gray-900">{wardName}</h3>
-                        <p className="text-red-700 font-semibold mt-1">Risk Level: {status?.riskLevel}</p>
-                        <p className="text-gray-700 mt-2">
+                        <h3 className="text-lg font-bold text-gray-900 uppercase">{wardName}</h3>
+                        <p className="text-red-800 font-bold mt-1 uppercase text-sm">Risk Level: {status?.riskLevel}</p>
+                        <p className="text-gray-800 mt-2 text-sm font-semibold uppercase">
                           Reason: High rainfall accumulation with inadequate drainage capacity
                         </p>
-                        <p className="text-gray-600 text-sm mt-1">
+                        <p className="text-gray-700 text-xs mt-1 font-bold uppercase">
                           Suggested Action: Deploy pumps and send response team for immediate assessment
                         </p>
                       </div>
-                      <div className="flex flex-col gap-2 ml-4">
+                      <div className="flex flex-col sm:flex-row md:flex-col gap-2">
                         <button
                           onClick={() => handleDeploy(wardName, 'pump')}
                           disabled={!isPumpDeployed && availablePumps === 0}
-                          className={`px-4 py-2 rounded-lg font-semibold transition whitespace-nowrap ${
+                          className={`px-4 py-2 border font-bold transition whitespace-nowrap uppercase text-xs tracking-wide ${
                             isPumpDeployed
-                              ? 'bg-red-600 text-white hover:bg-red-700'
+                              ? 'bg-red-800 text-white border-red-900 hover:bg-red-900'
                               : availablePumps === 0
-                              ? 'bg-gray-300 text-gray-600 cursor-not-allowed'
-                              : 'bg-blue-600 text-white hover:bg-blue-700'
+                              ? 'bg-gray-200 text-gray-500 border-gray-300 cursor-not-allowed'
+                              : 'bg-blue-900 text-white border-blue-950 hover:bg-blue-800'
                           }`}
                         >
                           {isPumpDeployed ? 'Recall Pump' : 'Deploy Pump'}
                         </button>
                         <button
                           onClick={() => handleDeploy(wardName, 'team')}
-                          className={`px-4 py-2 rounded-lg font-semibold transition whitespace-nowrap ${
+                          className={`px-4 py-2 border font-bold transition whitespace-nowrap uppercase text-xs tracking-wide ${
                             isTeamDeployed
-                              ? 'bg-red-600 text-white hover:bg-red-700'
-                              : 'bg-green-600 text-white hover:bg-green-700'
+                              ? 'bg-red-800 text-white border-red-900 hover:bg-red-900'
+                              : 'bg-green-800 text-white border-green-900 hover:bg-green-900'
                           }`}
                         >
                           {isTeamDeployed ? 'Recall Team' : 'Assign Team'}
                         </button>
                         <button
                           onClick={() => handleResolved(wardName)}
-                          className="px-4 py-2 bg-gray-600 text-white rounded-lg font-semibold hover:bg-gray-700 transition whitespace-nowrap"
+                          className="px-4 py-2 bg-gray-800 text-white border border-gray-900 font-bold hover:bg-gray-900 transition whitespace-nowrap uppercase text-xs tracking-wide"
                         >
                           Mark Resolved
                         </button>
@@ -204,23 +204,23 @@ const EmergencyOperationsDashboard = ({ onBack }) => {
         )}
 
         {highRiskWards.length === 0 && (
-          <div className="bg-green-50 border-2 border-green-300 rounded-lg p-8 text-center">
-            <p className="text-green-800 font-bold text-lg">All wards are at acceptable risk levels</p>
-            <p className="text-green-700 mt-2">No emergency deployment required at this time</p>
+          <div className="bg-green-50 border border-green-700 p-8 text-center">
+            <p className="text-green-900 font-bold text-lg uppercase tracking-wide">All wards are at acceptable risk levels</p>
+            <p className="text-green-800 mt-2 font-semibold uppercase text-sm">No emergency deployment required at this time</p>
           </div>
         )}
 
         {/* SECTION 4: Deployment Summary */}
         {Object.keys(deployments).length > 0 && (
-          <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Active Deployments</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="bg-white border border-gray-300 shadow-sm p-4 sm:p-6 mb-8">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 uppercase tracking-wide border-b border-gray-300 pb-2">Active Deployments</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {Object.entries(deployments).map(([key, deployment]) => {
                 const [wardName] = key.split('-');
                 return (
-                  <div key={key} className="border border-gray-300 rounded-lg p-4 bg-gray-50">
-                    <p className="font-semibold text-gray-900">{wardName}</p>
-                    <p className="text-sm text-gray-600 mt-1">
+                  <div key={key} className="border border-gray-300 p-4 bg-gray-50 border-l-4 border-l-blue-900">
+                    <p className="font-bold text-gray-900 uppercase">{wardName}</p>
+                    <p className="text-xs font-bold text-gray-700 mt-1 uppercase">
                       {deployment.type === 'pump' ? 'Pump' : 'Response Team'} deployed at{' '}
                       {new Date(deployment.timestamp).toLocaleTimeString()}
                     </p>

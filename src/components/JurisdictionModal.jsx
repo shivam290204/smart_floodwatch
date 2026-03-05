@@ -130,32 +130,32 @@ const JurisdictionModal = ({ isOpen, onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-xl shadow-2xl max-w-md w-full max-h-96 overflow-y-auto">
+      <div className="bg-white border-2 border-gray-400 shadow-lg max-w-md w-full max-h-96 overflow-y-auto">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-6 flex items-center justify-between">
+        <div className="bg-blue-900 text-white p-4 flex items-center justify-between border-b border-gray-400">
           <div className="flex items-center gap-3">
             <MapPinIcon />
-            <h2 className="text-2xl font-bold">Jurisdiction Lookup</h2>
+            <h2 className="text-lg font-bold uppercase tracking-wide">Jurisdiction Lookup</h2>
           </div>
           <button
             onClick={onClose}
-            className="p-1 hover:bg-blue-800 rounded-lg transition"
+            className="p-1 hover:bg-blue-800 transition border border-transparent hover:border-blue-700"
           >
             <CloseIcon />
           </button>
         </div>
 
         {/* Content */}
-        <div className="p-6">
+        <div className="p-4 sm:p-6">
           {/* Search/Selection */}
           <div className="mb-6">
-            <label className="block text-sm font-semibold text-gray-700 mb-3">
+            <label className="block text-xs font-bold text-gray-800 mb-2 uppercase tracking-wide">
               Select Affected Zone/Ward
             </label>
             <select
               value={selectedZone}
               onChange={(e) => setSelectedZone(e.target.value)}
-              className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none transition text-gray-900 bg-white"
+              className="w-full px-3 py-2 border border-gray-400 focus:border-blue-900 focus:ring-1 focus:ring-blue-900 transition text-gray-900 bg-gray-50 font-medium text-sm"
             >
               <option value="">-- Choose a location --</option>
               {Object.keys(jurisdictionData).map((zone) => (
@@ -168,33 +168,33 @@ const JurisdictionModal = ({ isOpen, onClose }) => {
 
           {/* Jurisdiction Card */}
           {selected && (
-            <div className={`${getCardBorderColor(selected.color)} bg-white rounded-lg p-5 space-y-4`}>
+            <div className={`${getCardBorderColor(selected.color)} bg-white border border-gray-300 p-4 space-y-4 shadow-sm`}>
               {/* Badge */}
               <div className="flex items-center justify-between">
-                <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold border ${getBadgeColor(selected.color)}`}>
+                <span className={`inline-block px-2 py-1 text-xs font-bold uppercase tracking-wide border ${getBadgeColor(selected.color)}`}>
                   {selected.badge}
                 </span>
-                <span className="text-3xl">{selected.icon}</span>
+                <span className="text-2xl">{selected.icon}</span>
               </div>
 
               {/* Jurisdiction Title */}
               <div>
-                <h3 className={`text-2xl font-bold ${
-                  selected.color === 'orange' ? 'text-orange-700' :
-                  selected.color === 'blue' ? 'text-blue-700' :
-                  'text-purple-700'
+                <h3 className={`text-xl font-bold uppercase tracking-wide ${
+                  selected.color === 'orange' ? 'text-orange-800' :
+                  selected.color === 'blue' ? 'text-blue-800' :
+                  'text-purple-800'
                 }`}>
                   {selected.jurisdiction}
                 </h3>
               </div>
 
               {/* Description */}
-              <p className="text-sm text-gray-600 leading-relaxed">
+              <p className="text-sm text-gray-800 font-medium">
                 {selected.description}
               </p>
 
               {/* Contact Information */}
-              <div className={`${getHeaderColor(selected.color)} rounded-lg p-4 space-y-3`}>
+              <div className={`${getHeaderColor(selected.color)} border border-gray-200 p-3 space-y-3`}>
                 {/* JE Name */}
                 <div className="flex items-center gap-3">
                   <div className="flex-shrink-0">
@@ -237,11 +237,11 @@ const JurisdictionModal = ({ isOpen, onClose }) => {
               </div>
 
               {/* Info Alert */}
-              <div className="flex gap-2 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
-                <div className="text-yellow-600 flex-shrink-0 mt-0.5">
+              <div className="flex gap-2 p-3 bg-yellow-50 border border-yellow-400">
+                <div className="text-yellow-700 flex-shrink-0 mt-0.5">
                   <AlertIcon />
                 </div>
-                <p className="text-xs text-yellow-800">
+                <p className="text-xs text-yellow-900 font-bold uppercase tracking-wide">
                   Contact the respective department for emergency response and complaints.
                 </p>
               </div>
@@ -250,11 +250,11 @@ const JurisdictionModal = ({ isOpen, onClose }) => {
 
           {/* Empty State */}
           {!selected && (
-            <div className="text-center py-8">
-              <div className="w-12 h-12 text-gray-300 mx-auto mb-3 opacity-50">
+            <div className="text-center py-8 border border-gray-300 bg-gray-50">
+              <div className="w-10 h-10 text-gray-400 mx-auto mb-2">
                 <MapPinIcon />
               </div>
-              <p className="text-gray-500 text-sm">Select a zone to view jurisdiction details</p>
+              <p className="text-gray-600 text-xs font-bold uppercase tracking-wide">Select a zone to view jurisdiction details</p>
             </div>
           )}
         </div>
